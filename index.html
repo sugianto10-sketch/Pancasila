@@ -1,0 +1,1676 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modul Ajar Interaktif Pendidikan Pancasila - UUD NRI 1945</title>
+<style>
+:root{
+  --primary-color:#1e3a8a;--primary-light:#3b82f6;--accent-color:#0d9488;
+  --bg-color:#f1f5f9;--card-bg:#ffffff;--text-main:#1e293b;--text-muted:#64748b;
+  --border-color:#e2e8f0;--warn:#d97706;--danger:#dc2626;--success:#16a34a;
+}
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif;}
+body{background:var(--bg-color);color:var(--text-main);line-height:1.65;padding-bottom:60px;}
+.container{max-width:1100px;margin:0 auto;padding:0 16px;}
+a{color:inherit;}
+.topbar{background:linear-gradient(135deg,var(--primary-color),#1e40af);color:#fff;padding:14px 0;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.15);}
+.topbar-inner{max-width:1100px;margin:0 auto;padding:0 16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;}
+.brand{font-weight:800;font-size:1.05rem;}
+.brand small{display:block;font-weight:400;font-size:.75rem;opacity:.85;}
+.tabs{display:flex;gap:4px;flex-wrap:wrap;}
+.tab-btn{background:rgba(255,255,255,.12);color:#fff;border:none;padding:8px 14px;border-radius:20px;cursor:pointer;font-size:.85rem;font-weight:600;transition:.2s;}
+.tab-btn:hover{background:rgba(255,255,255,.25);}
+.tab-btn.active{background:#fff;color:var(--primary-color);}
+.tab-btn.locked{opacity:.5;cursor:not-allowed;position:relative;}
+.tab-btn.locked::after{content:"🔒";margin-left:4px;font-size:.7rem;}
+.page{display:none;padding-top:22px;animation:fadeIn .25s ease;}
+.page.active{display:block;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+.card{background:var(--card-bg);border:1px solid var(--border-color);border-radius:12px;padding:22px;margin-bottom:20px;box-shadow:0 2px 4px rgba(0,0,0,.03);}
+.card h2{color:var(--primary-color);margin-bottom:12px;font-size:1.3rem;}
+.card h3{color:var(--accent-color);margin:14px 0 8px;font-size:1.05rem;}
+.hero{background:linear-gradient(135deg,var(--primary-color),#1e40af,var(--accent-color));color:#fff;border-radius:16px;padding:34px 26px;margin-bottom:22px;}
+.hero h1{font-size:1.7rem;margin-bottom:10px;}
+.hero p{font-size:1.02rem;opacity:.95;max-width:760px;}
+.hero .quote{margin-top:16px;font-style:italic;background:rgba(255,255,255,.15);padding:12px 16px;border-radius:10px;border-left:4px solid #fff;}
+.btn{background:var(--primary-light);color:#fff;border:none;padding:11px 22px;border-radius:8px;cursor:pointer;font-weight:700;font-size:.92rem;transition:.2s;}
+.btn:hover{background:var(--primary-color);}
+.btn.secondary{background:var(--text-muted);}
+.btn.accent{background:var(--accent-color);}
+.btn.accent:hover{background:#0f766e;}
+.btn.warn{background:var(--warn);}
+.btn.danger{background:var(--danger);}
+.btn.small{padding:6px 12px;font-size:.8rem;}
+.btn:disabled{opacity:.5;cursor:not-allowed;}
+.btn-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;}
+.step-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:14px;}
+.step{background:#f8fafc;border:1px solid var(--border-color);border-left:4px solid var(--accent-color);border-radius:8px;padding:14px;}
+.step .num{display:inline-block;background:var(--accent-color);color:#fff;width:26px;height:26px;border-radius:50%;text-align:center;line-height:26px;font-weight:700;margin-bottom:8px;}
+.tp-list{list-style:none;margin-top:10px;}
+.tp-list li{padding:10px 14px;background:#f8fafc;border-left:4px solid var(--primary-light);border-radius:6px;margin-bottom:8px;font-size:.93rem;}
+.tp-list li b{color:var(--primary-color);}
+.accordion{background:var(--card-bg);border:1px solid var(--border-color);border-radius:10px;margin-bottom:14px;overflow:hidden;box-shadow:0 2px 4px rgba(0,0,0,.03);}
+.accordion.locked{opacity:.6;}
+.accordion-header{padding:16px 20px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border-left:5px solid var(--primary-color);}
+.accordion-header:hover{background:#f8fafc;}
+.accordion-title{font-size:1.05rem;font-weight:700;color:var(--primary-color);}
+.accordion-subtitle{font-size:.85rem;color:var(--text-muted);margin-top:2px;}
+.icon{font-size:1.1rem;transition:.3s;color:var(--primary-color);}
+.accordion.active .icon{transform:rotate(180deg);}
+.accordion-content{max-height:0;overflow:hidden;transition:max-height .3s ease-out;}
+.accordion.active .accordion-content{border-top:1px solid var(--border-color);}
+.content-body{padding:20px;}
+.section-block{margin-bottom:20px;padding-bottom:16px;border-bottom:1px dashed var(--border-color);}
+.section-block:last-child{border:none;margin:0;padding:0;}
+.section-title{font-size:1rem;font-weight:700;color:var(--accent-color);margin-bottom:10px;}
+ul,ol{padding-left:20px;margin-bottom:8px;}
+li{margin-bottom:5px;}
+table.tbl{width:100%;border-collapse:collapse;margin:10px 0;font-size:.88rem;}
+table.tbl th,table.tbl td{border:1px solid var(--border-color);padding:8px 10px;text-align:left;vertical-align:top;}
+table.tbl th{background:#f1f5f9;}
+.key-badge{display:inline-block;background:#dcfce7;color:#166534;padding:2px 8px;border-radius:4px;font-size:.8rem;font-weight:700;margin-top:4px;}
+.tka-box{background:#fffbeb;border:1px solid #fde68a;border-radius:10px;padding:16px;margin-top:6px;}
+.tka-box .tag{display:inline-block;background:var(--warn);color:#fff;font-size:.72rem;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px;}
+.tka-question{background:#fff;border:1px solid #fde68a;border-radius:8px;padding:14px;margin-top:12px;}
+.tka-question .q-label{font-weight:700;color:var(--warn);font-size:.82rem;margin-bottom:6px;}
+.tka-option{display:flex;gap:8px;align-items:flex-start;background:#f8fafc;border:1px solid var(--border-color);border-radius:8px;padding:8px 12px;margin-bottom:6px;cursor:pointer;font-size:.88rem;}
+.tka-option:hover{background:#eef2ff;}
+.tka-option.correct{background:#dcfce7;border-color:#86efac;}
+.tka-option.wrong{background:#fee2e2;border-color:#fca5a5;}
+.tka-feedback{margin-top:10px;padding:10px 14px;border-radius:8px;font-size:.85rem;}
+.tka-feedback.ok{background:#dcfce7;color:#166534;border:1px solid #86efac;}
+.tka-feedback.bad{background:#fee2e2;color:#991b1b;border:1px solid #fca5a5;}
+input[type=text],input[type=number],input[type=password],textarea,select{width:100%;padding:9px 11px;border:1px solid var(--border-color);border-radius:7px;font-size:.9rem;margin-top:4px;background:#fff;}
+textarea{resize:vertical;min-height:70px;}
+label{font-weight:600;font-size:.88rem;color:var(--text-main);display:block;margin-top:10px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+@media(max-width:600px){.form-row{grid-template-columns:1fr;}}
+.badge{display:inline-block;padding:3px 10px;border-radius:12px;font-size:.75rem;font-weight:700;}
+.badge.ok{background:#dcfce7;color:#166534;}
+.badge.pending{background:#fef3c7;color:#92400e;}
+.badge.bad{background:#fee2e2;color:#991b1b;}
+.badge.locked{background:#e2e8f0;color:#475569;}
+.eval-layout{display:grid;grid-template-columns:170px 1fr;gap:18px;}
+@media(max-width:750px){.eval-layout{grid-template-columns:1fr;}}
+.qnav{background:var(--card-bg);border:1px solid var(--border-color);border-radius:10px;padding:14px;height:fit-content;position:sticky;top:78px;}
+.qnav-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-top:8px;}
+.qnav-grid a{display:block;text-align:center;padding:6px 0;border-radius:5px;background:#f1f5f9;font-size:.8rem;font-weight:700;color:var(--text-main);text-decoration:none;}
+.qnav-grid a.answered{background:var(--accent-color);color:#fff;}
+.question-block{background:var(--card-bg);border:1px solid var(--border-color);border-radius:10px;padding:18px;margin-bottom:14px;scroll-margin-top:80px;}
+.question-block .qnum{display:inline-block;background:var(--primary-color);color:#fff;font-size:.75rem;padding:2px 10px;border-radius:10px;margin-bottom:8px;}
+.qtype{font-size:.72rem;color:var(--text-muted);margin-left:6px;}
+.opt-label{display:flex;gap:10px;align-items:flex-start;background:#f8fafc;border:1px solid var(--border-color);border-radius:8px;padding:9px 12px;margin-bottom:7px;cursor:pointer;font-size:.9rem;}
+.opt-label:hover{background:#eef2ff;}
+.stimulus{background:#eff6ff;border-left:4px solid var(--primary-light);padding:12px 14px;border-radius:6px;margin-bottom:10px;font-size:.88rem;}
+.upload-box{border:2px dashed var(--border-color);border-radius:10px;padding:16px;text-align:center;background:#f8fafc;}
+.upload-box input{margin-top:8px;}
+.filename-tag{display:inline-block;background:#e0f2fe;color:#075985;padding:4px 10px;border-radius:6px;font-size:.82rem;margin-top:8px;}
+.info-box{background:#eff6ff;border:1px solid #bfdbfe;border-radius:8px;padding:12px 14px;font-size:.85rem;color:#1e3a8a;margin-bottom:14px;}
+.alert-box{background:#fef2f2;border:1px solid #fecaca;color:#991b1b;border-radius:8px;padding:12px 14px;font-size:.85rem;margin-bottom:14px;}
+.identity-card{background:linear-gradient(135deg,#fef3c7,#fde68a);border:2px solid #f59e0b;border-radius:12px;padding:20px;margin-bottom:20px;}
+.identity-card h2{color:#92400e;margin-bottom:10px;}
+.identity-saved{display:flex;justify-content:space-between;align-items:center;background:#ecfdf5;border:1px solid #86efac;border-radius:10px;padding:12px 16px;margin-bottom:20px;font-size:.92rem;}
+.identity-saved .info{color:#065f46;font-weight:600;}
+.hidden{display:none !important;}
+footer.appfoot{text-align:center;color:var(--text-muted);font-size:.8rem;padding:30px 0;}
+@media print{
+  .topbar,.tabs,.btn-row,.qnav,.no-print{display:none !important;}
+  .page{display:block !important;}
+  body{padding:0;background:#fff;}
+  .card{box-shadow:none;border:1px solid #ccc;}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">📘 Modul Pendidikan Pancasila<small>UUD NRI Tahun 1945 · Kelas X</small></div>
+    <div class="tabs">
+      <button class="tab-btn" data-page="beranda" onclick="goPage('beranda')">Beranda</button>
+      <button class="tab-btn" data-page="materi" onclick="goPage('materi')">Materi</button>
+      <button class="tab-btn" data-page="simulasi" onclick="goPage('simulasi')">Simulasi/LKPD</button>
+      <button class="tab-btn" data-page="evaluasi" onclick="goPage('evaluasi')">Evaluasi Akhir</button>
+      <button class="tab-btn" data-page="refleksi" onclick="goPage('refleksi')">Refleksi</button>
+      <button class="tab-btn hidden" id="guruTabBtn" data-page="guru" onclick="goPage('guru')">Hasil Evaluasi</button>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- ============ BERANDA ============ -->
+<section id="page-beranda" class="page active">
+  <div class="hero">
+    <h1>Assalamu'alaikum / Salam Sejahtera, Ananda Hebat! 👋</h1>
+    <p>Selamat datang di Modul Ajar Interaktif <b>Pendidikan Pancasila — Bab UUD NRI Tahun 1945</b>. Modul ini dirancang agar kalian tidak hanya menghafal pasal, tetapi benar-benar memahami bagaimana konstitusi bekerja dalam kehidupan sehari-hari.</p>
+    <div class="quote">"Bangsa yang besar adalah bangsa yang menghormati hukum dan konstitusinya. Mulailah dari hal kecil: taat aturan di sekolahmu."</div>
+  </div>
+
+  <!-- FORM IDENTITAS -->
+  <div id="identityForm" class="identity-card">
+    <h2>👤 Isi Identitasmu Terlebih Dahulu</h2>
+    <p style="font-size:.9rem;color:#78350f;margin-bottom:8px">Nama dan kelasmu akan otomatis digunakan di seluruh modul (Refleksi, LKPD, dan Evaluasi Akhir).</p>
+    <div class="form-row">
+      <div><label>Nama Lengkap</label><input type="text" id="inputNama" placeholder="Contoh: Ahmad Rizki"></div>
+      <div><label>Kelas</label><input type="text" id="inputKelas" placeholder="Contoh: X-1"></div>
+    </div>
+    <div class="btn-row"><button class="btn accent" onclick="simpanIdentitas()">💾 Simpan & Mulai Belajar</button></div>
+  </div>
+
+  <!-- IDENTITAS TERSIMPAN -->
+  <div id="identitySaved" class="identity-saved hidden">
+    <div>
+      <div class="info">👤 <span id="tampilNama"></span> — Kelas <span id="tampilKelas"></span></div>
+      <div style="font-size:.8rem;color:#065f46;margin-top:2px">Identitas tersimpan otomatis</div>
+    </div>
+    <button class="btn small secondary" onclick="gantiIdentitas()">✏️ Ganti</button>
+  </div>
+
+  <div class="card">
+    <h2>🎯 Tujuan Pembelajaran</h2>
+    <p>Setelah menyelesaikan seluruh rangkaian modul ini (Pertemuan 11–18), peserta didik diharapkan mampu:</p>
+    <ul class="tp-list" id="beranda-tp-list"></ul>
+  </div>
+  <div class="card">
+    <h2>📊 Progres Belajar Kamu</h2>
+    <div id="progressDisplay"></div>
+  </div>
+  <div class="card">
+    <h2>🧭 Alur Penggunaan Modul</h2>
+    <div class="step-grid">
+      <div class="step"><span class="num">1</span><b>Isi Identitas</b><p>Nama & kelas digunakan otomatis di seluruh modul.</p></div>
+      <div class="step"><span class="num">2</span><b>Baca Materi</b><p>Pelajari pertemuan berurutan. Setiap pertemuan ada 2 soal TKA.</p></div>
+      <div class="step"><span class="num">3</span><b>Kerjakan LKPD</b><p>Praktik kewarganegaraan dan analisis kasus.</p></div>
+      <div class="step"><span class="num">4</span><b>Refleksi</b><p>Refleksi otomatis terkirim ke guru.</p></div>
+      <div class="step"><span class="num">5</span><b>Evaluasi Akhir</b><p>Terbuka setelah semua 8 pertemuan selesai.</p></div>
+      <div class="step"><span class="num">6</span><b>Cetak Hasil & Sertifikat</b><p>Nilai ≥75 memperoleh sertifikat.</p></div>
+    </div>
+  </div>
+  <div class="card">
+    <h2>ℹ️ Informasi Modul</h2>
+    <div class="form-row">
+      <div><b>Kelas / Fase:</b> X / Fase E</div>
+      <div><b>Semester:</b> Ganjil</div>
+      <div><b>Alokasi Waktu:</b> 8 Pertemuan × 2 JP + 1 Evaluasi Akhir</div>
+      <div><b>Satuan Pendidikan:</b> SMA Negeri 1 Sebuku</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MATERI ============ -->
+<section id="page-materi" class="page">
+  <div class="card">
+    <h2>📖 Materi Pembelajaran</h2>
+    <p>Setiap pertemuan berisi tujuan pembelajaran, apersepsi, materi lengkap, skenario pembelajaran, dan <b>2 soal bergaya TKA</b>.</p>
+    <div class="info-box" id="materiLockInfo">Selesaikan Pertemuan 11 terlebih dahulu untuk membuka pertemuan selanjutnya.</div>
+    <div class="btn-row">
+      <button class="btn" onclick="openAllAcc('materiAcc')">Buka Semua (yang terbuka)</button>
+      <button class="btn secondary" onclick="closeAllAcc('materiAcc')">Tutup Semua</button>
+    </div>
+  </div>
+  <div id="materiAcc"></div>
+</section>
+
+<!-- ============ SIMULASI / LKPD ============ -->
+<section id="page-simulasi" class="page">
+  <div class="card">
+    <h2>🧪 Simulasi & LKPD</h2>
+    <p>Kerjakan lembar kerja untuk setiap pertemuan. Jawaban tersimpan otomatis di perangkatmu.</p>
+  </div>
+  <div id="lkpdContainer"></div>
+</section>
+
+<!-- ============ EVALUASI AKHIR ============ -->
+<section id="page-evaluasi" class="page">
+  <div id="evalLocked" class="card">
+    <h2>🔒 Evaluasi Akhir Terkunci</h2>
+    <div class="alert-box">Evaluasi Akhir hanya dapat diakses setelah menyelesaikan <b>semua 8 pertemuan</b>.</div>
+    <div id="evalLockProgress"></div>
+    <div class="btn-row"><button class="btn" onclick="goPage('materi')">📖 Kembali ke Materi</button></div>
+  </div>
+
+  <div id="evalIntro" class="card hidden">
+    <h2>📝 Evaluasi Akhir — UUD NRI Tahun 1945</h2>
+    <p>Evaluasi terdiri dari <b>24 soal Pilihan Ganda</b> dan <b>5 soal Esai</b> (diunggah dalam format PDF/gambar).</p>
+    <div class="info-box">Identitas kamu: <b><span id="evalIntroNama"></span></b> — Kelas <b><span id="evalIntroKelas"></span></b></div>
+    <div class="btn-row"><button class="btn accent" onclick="startEvaluasi()">▶️ Mulai Evaluasi</button></div>
+  </div>
+
+  <div id="evalMain" class="hidden">
+    <div class="card no-print">
+      <b>Peserta: </b><span id="showNama"></span> — Kelas <span id="showKelas"></span>
+    </div>
+    <div class="eval-layout">
+      <div class="qnav no-print">
+        <b>Pilihan Ganda</b>
+        <div class="qnav-grid" id="navPG"></div>
+        <b style="display:block;margin-top:14px;">Esai</b>
+        <div class="qnav-grid" id="navEsai"></div>
+        <div class="btn-row"><button class="btn accent" style="width:100%" onclick="submitEvaluasi()">📤 Kirim Jawaban & Nilai</button></div>
+      </div>
+      <div>
+        <div class="card"><h3 style="margin-top:0">A. Soal Pilihan Ganda</h3><p style="font-size:.85rem;color:var(--text-muted)">Tipe: PG biasa, PG kompleks, dan Benar/Salah.</p></div>
+        <div id="pgContainer"></div>
+        <div class="card"><h3 style="margin-top:0">B. Soal Esai (Unggah Jawaban)</h3><p style="font-size:.85rem;color:var(--text-muted)">Foto atau scan hasil kerja, unggah dalam format PDF/gambar.</p></div>
+        <div id="esaiContainer"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="evalResult" class="hidden card">
+    <h2>✅ Jawaban Terkirim</h2>
+    <p id="resultSummary"></p>
+    <div class="info-box" id="sheetStatus"></div>
+    <div class="btn-row">
+      <button class="btn accent" onclick="cekHasilSiswa()">🔍 Cek Hasil & Pembahasan Saya</button>
+    </div>
+  </div>
+
+  <div id="cekHasilPanel" class="card">
+    <h2>🔍 Cek Hasil & Unduh Sertifikat</h2>
+    <p style="font-size:.9rem;color:var(--text-muted)">Hasil berdasarkan identitas kamu (<b><span id="cekHasilNamaTxt"></span></b> — Kelas <b><span id="cekHasilKelasTxt"></span></b>).</p>
+    <div class="btn-row">
+      <button class="btn accent" onclick="cekHasilSiswa()">🔍 Tampilkan Hasil Saya</button>
+      <button class="btn secondary" onclick="refreshDariServer()">🔄 Refresh dari Server</button>
+    </div>
+    <div id="cekHasilOutput" style="margin-top:16px"></div>
+  </div>
+</section>
+
+<!-- ============ REFLEKSI ============ -->
+<section id="page-refleksi" class="page">
+  <div class="card">
+    <h2>💭 Refleksi Pembelajaran</h2>
+    <p>Isi refleksi jujur setelah setiap pertemuan. Refleksi tersimpan otomatis dan terkirim ke guru.</p>
+    <div class="info-box">Refleksi atas nama: <b><span id="refleksiNamaTxt"></span></b> — Kelas <b><span id="refleksiKelasTxt"></span></b></div>
+  </div>
+  <div id="refleksiContainer"></div>
+</section>
+
+<!-- ============ HASIL EVALUASI (GURU) ============ -->
+<section id="page-guru" class="page">
+  <div id="guruLogin" class="card">
+    <h2>🔐 Login Guru — Hasil Evaluasi</h2>
+    <p style="font-size:.85rem;color:var(--text-muted)">Halaman ini hanya untuk guru.</p>
+    <label>Password Guru</label>
+    <input type="password" id="guruPassword" placeholder="Masukkan password" onkeydown="if(event.key==='Enter')loginGuru()">
+    <div class="btn-row"><button class="btn accent" onclick="loginGuru()">🔓 Masuk</button></div>
+  </div>
+
+  <div id="guruContent" class="hidden">
+    <div class="card">
+      <button class="btn danger" style="float:right" onclick="logoutGuru()">🚪 Logout</button>
+      <h2>📊 Hasil Evaluasi Siswa (Online)</h2>
+      <p style="font-size:.85rem;color:var(--text-muted)">Klik tombol di bawah untuk memuat jawaban siswa dari server.</p>
+      <div class="btn-row" style="margin-top:14px">
+        <button class="btn accent" onclick="syncFromSheet()">🔄 Sinkronkan dari Server</button>
+        <button class="btn" onclick="renderSubmissionList()">🖥️ Data Lokal</button>
+        <button class="btn secondary" onclick="clearSubmissions()">🗑️ Hapus Data Lokal</button>
+      </div>
+      <div class="info-box" id="syncStatus" style="margin-top:12px">Belum ada sinkronisasi.</div>
+    </div>
+
+    <div class="card">
+      <div id="submissionList"></div>
+    </div>
+
+    <div id="koreksiPanel" class="hidden"></div>
+  </div>
+</section>
+
+</div>
+
+<footer class="appfoot">Modul Ajar Interaktif Pendidikan Pancasila · UUD NRI Tahun 1945 · Kelas X Fase E</footer>
+
+<script>
+/* ============================================================
+   KONFIGURASI UTAMA
+   ============================================================ */
+const GURU_PASSWORD = "guru2024";
+
+// >>>>> TEMPEL URL WEB APP GOOGLE APPS SCRIPT DI SINI <<<<<
+const DEFAULT_SHEET_URL = ""; // Contoh: "https://script.google.com/macros/s/AKfycbxxx/exec"
+
+/* ============================================================
+   KODE GOOGLE APPS SCRIPT — Salin ke script.google.com
+   ============================================================ */
+const gsCodeText = `function doPost(e) {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var data = JSON.parse(e.postData.contents);
+  
+  // ==== SHEET EVALUASI ====
+  if (data.type !== 'refleksi' && data.type !== 'lkpd') {
+    var sheet = ss.getSheetByName('Evaluasi') || ss.insertSheet('Evaluasi');
+    if (sheet.getLastRow() === 0) {
+      sheet.appendRow(["ID","Waktu","Nama","Kelas","PG Benar","PG Total","PG Skor","Nilai Akhir","Status","Esai Files","Esai Data","Esai Skor","Esai Catatan"]);
+    }
+    var lastRow = sheet.getLastRow();
+    var found = false;
+    for (var i = 2; i <= lastRow; i++) {
+      if (sheet.getRange(i, 1).getValue() === data.id) {
+        sheet.getRange(i, 1, 1, 13).setValues([[
+          data.id, data.waktu, data.nama, data.kelas,
+          data.pgBenar, data.pgTotal, data.pgSkor,
+          data.nilaiAkhir !== null && data.nilaiAkhir !== undefined ? data.nilaiAkhir : "-",
+          data.statusKoreksi,
+          typeof data.esaiFiles === 'string' ? data.esaiFiles : JSON.stringify(data.esaiFiles),
+          data.esaiData ? JSON.stringify(data.esaiData) : "",
+          data.esaiSkor !== null && data.esaiSkor !== undefined ? data.esaiSkor : "",
+          data.esaiCatatan ? JSON.stringify(data.esaiCatatan) : ""
+        ]]);
+        found = true;
+        break;
+      }
+    }
+    if (!found) {
+      sheet.appendRow([
+        data.id, data.waktu, data.nama, data.kelas,
+        data.pgBenar, data.pgTotal, data.pgSkor,
+        data.nilaiAkhir !== null && data.nilaiAkhir !== undefined ? data.nilaiAkhir : "-",
+        data.statusKoreksi,
+        typeof data.esaiFiles === 'string' ? data.esaiFiles : JSON.stringify(data.esaiFiles),
+        data.esaiData ? JSON.stringify(data.esaiData) : "",
+        data.esaiSkor !== null && data.esaiSkor !== undefined ? data.esaiSkor : "",
+        data.esaiCatatan ? JSON.stringify(data.esaiCatatan) : ""
+      ]);
+    }
+    return ContentService.createTextOutput(JSON.stringify({status:"OK"}))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+  
+  // ==== SHEET REFLEKSI ====
+  if (data.type === 'refleksi') {
+    var refSheet = ss.getSheetByName('Refleksi') || ss.insertSheet('Refleksi');
+    if (refSheet.getLastRow() === 0) {
+      refSheet.appendRow(["Waktu","Nama","Kelas","Pertemuan","Refleksi 1","Refleksi 2","Refleksi 3"]);
+    }
+    var refData = refSheet.getDataRange().getValues();
+    for (var j = refData.length - 1; j >= 1; j--) {
+      if (refData[j][1] === data.nama && refData[j][2] === data.kelas) {
+        refSheet.deleteRow(j + 1);
+      }
+    }
+    for (var mid in data.data) {
+      var pertemuan = mid.replace('m','');
+      var row = data.data[mid] || [];
+      refSheet.appendRow([
+        data.waktu, data.nama, data.kelas, pertemuan,
+        row[0]||'', row[1]||'', row[2]||''
+      ]);
+    }
+    return ContentService.createTextOutput(JSON.stringify({status:"OK"}))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+
+  // ==== SHEET LKPD ====
+  if (data.type === 'lkpd') {
+    var lkSheet = ss.getSheetByName('LKPD') || ss.insertSheet('LKPD');
+    if (lkSheet.getLastRow() === 0) {
+      lkSheet.appendRow(["Waktu","Nama","Kelas","Pertemuan","Jawaban LKPD"]);
+    }
+    var lkData = lkSheet.getDataRange().getValues();
+    for (var k = lkData.length - 1; k >= 1; k--) {
+      if (lkData[k][1] === data.nama && lkData[k][2] === data.kelas && String(lkData[k][3]) === String(data.pertemuan)) {
+        lkSheet.deleteRow(k + 1);
+      }
+    }
+    lkSheet.appendRow([
+      data.waktu, data.nama, data.kelas, data.pertemuan,
+      JSON.stringify(data.jawaban)
+    ]);
+    return ContentService.createTextOutput(JSON.stringify({status:"OK"}))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+}
+
+function doGet(e) {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Evaluasi') || SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  var data = sheet.getDataRange().getValues();
+  return ContentService.createTextOutput(JSON.stringify(data))
+    .setMimeType(ContentService.MimeType.JSON);
+}`;
+
+/* ============================================================
+   IDENTITAS SISWA — Input di Beranda
+   ============================================================ */
+function getIdentitas(){
+  return {
+    nama: localStorage.getItem('siswa_nama') || '',
+    kelas: localStorage.getItem('siswa_kelas') || ''
+  };
+}
+function simpanIdentitas(){
+  const nama = document.getElementById('inputNama').value.trim();
+  const kelas = document.getElementById('inputKelas').value.trim();
+  if(!nama || !kelas){ alert('Mohon isi nama dan kelas terlebih dahulu.'); return; }
+  localStorage.setItem('siswa_nama', nama);
+  localStorage.setItem('siswa_kelas', kelas);
+  tampilkanIdentitas();
+  alert('Identitas tersimpan! Selamat belajar, ' + nama + '.');
+}
+function tampilkanIdentitas(){
+  const id = getIdentitas();
+  if(!id.nama || !id.kelas) return;
+  document.getElementById('identityForm').classList.add('hidden');
+  document.getElementById('identitySaved').classList.remove('hidden');
+  document.getElementById('tampilNama').textContent = id.nama;
+  document.getElementById('tampilKelas').textContent = id.kelas;
+  // Update semua elemen terkait
+  const elRefNama = document.getElementById('refleksiNamaTxt');
+  const elRefKelas = document.getElementById('refleksiKelasTxt');
+  if(elRefNama) elRefNama.textContent = id.nama;
+  if(elRefKelas) elRefKelas.textContent = id.kelas;
+  const elEvalNama = document.getElementById('evalIntroNama');
+  const elEvalKelas = document.getElementById('evalIntroKelas');
+  if(elEvalNama) elEvalNama.textContent = id.nama;
+  if(elEvalKelas) elEvalKelas.textContent = id.kelas;
+  const elCekNama = document.getElementById('cekHasilNamaTxt');
+  const elCekKelas = document.getElementById('cekHasilKelasTxt');
+  if(elCekNama) elCekNama.textContent = id.nama;
+  if(elCekKelas) elCekKelas.textContent = id.kelas;
+}
+function gantiIdentitas(){
+  const id = getIdentitas();
+  document.getElementById('inputNama').value = id.nama;
+  document.getElementById('inputKelas').value = id.kelas;
+  document.getElementById('identityForm').classList.remove('hidden');
+  document.getElementById('identitySaved').classList.add('hidden');
+}
+
+/* ============================================================
+   DATA MODUL — 8 PERTEMUAN + 2 SOAL TKA PER PERTEMUAN
+   ============================================================ */
+const meetings = [
+{
+  id:11, jp:2, topik:"Pengertian, Fungsi, dan Kedudukan UUD NRI Tahun 1945",
+  tujuan:"Peserta didik mampu menjelaskan pengertian, fungsi, dan kedudukan UUD NRI Tahun 1945 sebagai hukum dasar tertulis negara.",
+  apersepsi:"Guru menunjukkan dua benda: buku tata tertib sekolah dan salinan cetak UUD NRI Tahun 1945, lalu bertanya: \"Mengapa sekolah punya tata tertib? Apa jadinya jika tidak ada aturan tertinggi yang mengikat semua orang di negara ini?\"",
+  materi:`<p>Undang-Undang Dasar Negara Republik Indonesia Tahun 1945 (UUD NRI Tahun 1945) adalah hukum dasar tertulis yang menjadi konstitusi negara Indonesia.</p><br>
+  <p><strong>Pengertian UUD NRI Tahun 1945:</strong><br>UUD adalah naskah tertulis yang memuat kerangka dan tugas pokok badan-badan pemerintahan suatu negara serta menentukan cara kerja badan-badan tersebut. Disahkan oleh PPKI pada 18 Agustus 1945.</p><br>
+  <p><strong>Fungsi UUD NRI Tahun 1945:</strong></p>
+  <ul><li><strong>Fungsi konstitutif:</strong> membentuk dan menegaskan eksistensi negara.</li>
+  <li><strong>Fungsi pembatasan kekuasaan:</strong> mencegah penyelenggara negara bertindak sewenang-wenang.</li>
+  <li><strong>Fungsi pengatur:</strong> menjadi pedoman penyusunan seluruh peraturan di bawahnya.</li>
+  <li><strong>Fungsi penjamin:</strong> menjamin dan melindungi hak asasi serta hak konstitusional warga negara.</li>
+  <li><strong>Fungsi simbolis:</strong> mencerminkan identitas dan cita-cita bangsa Indonesia.</li></ul>
+  <p><strong>Kedudukan UUD NRI Tahun 1945:</strong><br>Norma hukum tertinggi (<em>supreme law of the land</em>). Seluruh peraturan di bawahnya tidak boleh bertentangan dengan UUD.</p><br>
+  <p><strong>Sistematika:</strong> Pembukaan (4 alinea), batang tubuh (21 bab, 73 pasal, 170 ayat), aturan peralihan, aturan tambahan.</p>`,
+  skenario:{
+    pendahuluan:"1. Guru membuka kelas, menyapa, mengecek kehadiran, dan berdoa.<br>2. Apersepsi pemantik tata tertib vs UUD.<br>3. Penyampaian tujuan pembelajaran.",
+    inti:"1. Pemaparan materi pengertian, fungsi, dan kedudukan UUD (10 menit).<br>2. Diskusi kelompok mengidentifikasi isi pokok UUD.<br>3. Presentasi kelompok.<br>4. Klarifikasi guru.<br>5. Pengerjaan LKPD individu.",
+    penutup:"1. Kesimpulan bersama.<br>2. Refleksi lisan cepat.<br>3. Penutup."
+  },
+  lkpd:{instruksi:"Bacalah satu pasal UUD NRI Tahun 1945, lalu jawab:",
+    rows:["Pasal berapa yang kamu baca dan apa isi pokoknya?","Siapa pihak yang memiliki hak dalam pasal tersebut?","Apa tanggung jawab negara terhadap hak tersebut?","Apa yang terjadi jika pasal ini tidak ada dalam UUD?","Tuliskan satu contoh penerapan pasal ini dalam kehidupan sehari-harimu."]},
+  tka:[
+    {stimulus:"Sebuah desa membuat peraturan desa yang melarang warga pendatang untuk beribadah menurut keyakinannya.",
+    pertanyaan:"Berdasarkan kedudukan UUD NRI Tahun 1945 sebagai norma hukum tertinggi, tindakan yang paling tepat terhadap peraturan desa tersebut adalah...",
+    opsi:["Membiarkan karena itu wewenang desa sepenuhnya","Membatalkan/meninjau ulang karena bertentangan dengan UUD yang menjamin kebebasan beribadah","Meminta warga pendatang pindah desa","Mengadakan referendum warga desa saja","Menyerahkan ke pengadilan adat setempat"],
+    kunci:1, pembahasan:"UUD berkedudukan sebagai norma hukum tertinggi, semua peraturan di bawahnya tidak boleh bertentangan dengan UUD, termasuk jaminan kebebasan beribadah pada Pasal 29 ayat (2)."},
+    {stimulus:"UUD NRI Tahun 1945 disahkan oleh PPKI pada 18 Agustus 1945.",
+    pertanyaan:"Fungsi UUD yang mencegah penyelenggara negara bertindak sewenang-wenang disebut fungsi...",
+    opsi:["Konstitutif","Pembatasan kekuasaan","Simbolis","Penjamin","Pengatur"],
+    kunci:1, pembahasan:"Fungsi pembatasan kekuasaan mencegah penyelenggara negara bertindak sewenang-wenang melalui checks and balances."}
+  ]
+},
+{
+  id:12, jp:2, topik:"Menerapkan Perilaku Taat Hukum di Lingkungan Sekolah",
+  tujuan:"Peserta didik mampu menerapkan perilaku taat hukum sesuai aturan di lingkungan sekolah.",
+  apersepsi:"Guru menceritakan situasi kelas tanpa aturan piket, lalu bertanya: \"Apa yang membuat sebuah aturan dipatuhi dengan sukarela?\"",
+  materi:`<p>Hukum dan tata tertib dibuat untuk menciptakan ketertiban, rasa aman, keadilan, dan kepastian dalam kehidupan bersama.</p><br>
+  <p><strong>Ciri Perilaku Taat Hukum:</strong></p>
+  <ul><li>Melaksanakan aturan atas kesadaran sendiri, bukan karena diawasi.</li><li>Konsisten di depan maupun di belakang orang lain.</li><li>Menghormati hak orang lain.</li><li>Berani menegur dengan santun.</li></ul>
+  <p><strong>Contoh:</strong> Hadir tepat waktu, memakai seragam, menjaga kebersihan, tidak mencontek.</p><br>
+  <p><strong>Prinsip Penegakan Sanksi:</strong> edukatif, proporsional, dan adil.</p>`,
+  skenario:{
+    pendahuluan:"1. Pembukaan dan presensi.<br>2. Apersepsi cerita kelas tanpa piket.<br>3. Tujuan pembelajaran.",
+    inti:"1. Paparan konsep taat hukum (10 menit).<br>2. Diskusi kelompok tentang tata tertib.<br>3. Pengisian LKPD.<br>4. Presentasi hasil diskusi.",
+    penutup:"1. Kesimpulan pentingnya kesadaran hukum.<br>2. Komitmen pribadi.<br>3. Penutup."
+  },
+  lkpd:{instruksi:"Evaluasi Tata Tertib Sekolah:",
+    rows:["Aturan yang dipilih","Manfaat aturan ini","Kendala pelaksanaannya","Usulan perbaikan","Contoh sanksi yang mendidik"]},
+  tka:[
+    {stimulus:"Seorang siswa selalu memakai seragam lengkap dan hadir tepat waktu meskipun tidak ada guru piket yang mengawasi.",
+    pertanyaan:"Perilaku siswa tersebut adalah contoh kepatuhan hukum yang paling baik karena...",
+    opsi:["Ia takut dihukum wali kelas","Ia mematuhi aturan atas kesadaran sendiri, bukan karena diawasi","Ia ingin dipuji teman-temannya","Ia mengikuti karena semua orang melakukannya","Ia menghindari denda sekolah"],
+    kunci:1, pembahasan:"Kepatuhan hukum yang sehat ditandai dengan pelaksanaan aturan atas kesadaran diri sendiri, konsisten baik saat diawasi maupun tidak."},
+    {stimulus:"Dua siswa terlibat pertengkaran. Guru menyarankan mediasi dan kesepakatan damai.",
+    pertanyaan:"Tindakan guru tersebut mencerminkan prinsip penegakan sanksi yang...",
+    opsi:["Mempermalukan pelanggar","Edukatif dan mengutamakan penyelesaian yang mendidik","Membiarkan pelanggaran","Tidak adil dan memihak","Menyerahkan sepenuhnya ke polisi"],
+    kunci:1, pembahasan:"Sanksi edukatif bertujuan mendidik dan memperbaiki perilaku, bukan mempermalukan."}
+  ]
+},
+{
+  id:13, jp:2, topik:"Tata Urutan Peraturan Perundang-undangan di Indonesia",
+  tujuan:"Peserta didik mampu menganalisis tata urutan (hierarki) peraturan perundang-undangan di Indonesia.",
+  apersepsi:"Guru menggambar piramida kosong dan bertanya: \"Jika sebuah Peraturan Desa bertentangan dengan Undang-Undang, aturan mana yang harus diikuti?\"",
+  materi:`<p>Hierarki peraturan perundang-undangan diperlukan agar tercipta ketertiban hukum (asas <em>lex superior derogat legi inferiori</em>).</p><br>
+  <p><strong>Urutan:</strong></p>
+  <ol><li>UUD NRI Tahun 1945</li><li>TAP MPR</li><li>UU / Perppu</li><li>Peraturan Pemerintah (PP)</li><li>Peraturan Presiden (Perpres)</li><li>Perda Provinsi</li><li>Perda Kabupaten/Kota</li></ol>`,
+  skenario:{
+    pendahuluan:"1. Salam, doa, dan presensi.<br>2. Apersepsi piramida hierarki.<br>3. Tujuan pembelajaran.",
+    inti:"1. Pemaparan materi asas lex superior (10 menit).<br>2. Simulasi piramida hukum.<br>3. Pengerjaan LKPD.<br>4. Pembahasan interaktif.",
+    penutup:"1. Refleksi dan kesimpulan.<br>2. Penutup."
+  },
+  lkpd:{instruksi:"Jawablah:",
+    rows:["Urutkan: Peraturan Presiden, UUD NRI Tahun 1945, Peraturan Pemerintah","Mengapa Peraturan Daerah tidak boleh bertentangan dengan UU?","Apa yang terjadi jika ditemukan pertentangan antara Perda dan UU?","Sebutkan lembaga yang berwenang menguji UU terhadap UUD.","Berikan contoh pertentangan antaraturan di lingkunganmu."]},
+  tka:[
+    {stimulus:"Sebuah Peraturan Daerah Kabupaten mengatur retribusi yang bertentangan dengan Undang-Undang.",
+    pertanyaan:"Sesuai asas lex superior derogat legi inferiori, penyelesaian yang tepat adalah...",
+    opsi:["Perda tetap berlaku","Perda dapat diuji materi (judicial review) dan berpotensi dibatalkan","UU harus menyesuaikan dengan Perda","Kedua aturan berlaku bersamaan","Perkara diselesaikan lewat DPR pusat"],
+    kunci:1, pembahasan:"Perda yang bertentangan dengan UU dapat diuji (judicial review) oleh Mahkamah Agung dan berpotensi dibatalkan."},
+    {stimulus:"Dalam hierarki peraturan perundang-undangan Indonesia, UUD NRI Tahun 1945 menempati posisi tertinggi.",
+    pertanyaan:"Urutan yang benar setelah UUD NRI Tahun 1945 adalah...",
+    opsi:["Peraturan Pemerintah","Peraturan Presiden","Ketetapan MPR","Peraturan Daerah","Undang-Undang"],
+    kunci:2, pembahasan:"Setelah UUD NRI 1945 adalah TAP MPR, UU/Perppu, PP, Perpres, Perda Provinsi, Perda Kab/Kota."}
+  ]
+},
+{
+  id:14, jp:2, topik:"Pancasila sebagai Sumber dari Segala Sumber Hukum Negara",
+  tujuan:"Peserta didik mampu menganalisis kedudukan Pancasila sebagai sumber dari segala sumber hukum negara.",
+  apersepsi:"Guru menunjukkan aturan anti-perundungan dan bertanya: \"Nilai apa dari Pancasila yang melandasi aturan ini?\"",
+  materi:`<p>Pancasila merupakan sumber dari segala sumber hukum negara (sumber hukum materiel).</p><br>
+  <p><strong>Kedudukan:</strong> Cita hukum (<em>staatsfundamentalnorm</em>).</p>
+  <p><strong>Penjabaran:</strong></p>
+  <ul><li>Sila 1: Kebebasan beragama (Pasal 29).</li><li>Sila 2: HAM dan larangan diskriminasi.</li><li>Sila 3: Kebangsaan dan Bhinneka Tunggal Ika.</li><li>Sila 4: Musyawarah dan demokrasi.</li><li>Sila 5: Pemerataan kesejahteraan.</li></ul>`,
+  skenario:{
+    pendahuluan:"1. Salam, doa, apersepsi.<br>2. Tujuan pembelajaran.",
+    inti:"1. Pemaparan (15 menit).<br>2. Diskusi kelompok menganalisis aturan sekolah.<br>3. Pengisian LKPD.<br>4. Presentasi.",
+    penutup:"1. Kesimpulan.<br>2. Doa."
+  },
+  lkpd:{instruksi:"Analisis aturan sekolah:",
+    rows:["Aturan sekolah","Sila Pancasila pertama yang relevan","Sila kedua yang relevan","Apa yang terjadi bila tidak ada?","Contoh tindakan nyata"]},
+  tka:[
+    {stimulus:"Sebuah rancangan peraturan daerah mengatur pembatasan hak pendidikan bagi kelompok masyarakat tertentu.",
+    pertanyaan:"Bertentangan dengan sila...",
+    opsi:["Ketuhanan Yang Maha Esa","Kemanusiaan yang Adil dan Beradab","Persatuan Indonesia","Kerakyatan","Keadilan Sosial"],
+    kunci:1, pembahasan:"Diskriminasi bertentangan dengan sila Kemanusiaan yang Adil dan Beradab."},
+    {stimulus:"Pancasila berkedudukan sebagai staatsfundamentalnorm.",
+    pertanyaan:"Pernyataan yang tepat mengenai kedudukan Pancasila adalah...",
+    opsi:["Hanya simbol tanpa kekuatan hukum","Sumber dari segala sumber hukum negara","Setara Peraturan Daerah","Hanya berlaku di sekolah","Tidak berkaitan dengan UUD"],
+    kunci:1, pembahasan:"Pancasila sebagai sumber dari segala sumber hukum negara menjadi arah moral dan cita hukum."}
+  ]
+},
+{
+  id:15, jp:2, topik:"Hak dan Kewajiban Warga Negara dalam UUD NRI Tahun 1945",
+  tujuan:"Peserta didik mampu mengidentifikasi hak dan kewajiban warga negara dalam UUD NRI Tahun 1945.",
+  apersepsi:"Guru bertanya: \"Sebutkan satu hak dan satu kewajibanmu sebagai siswa.\"",
+  materi:`<p>Hak dan kewajiban harus berjalan seimbang.</p><br>
+  <p><strong>Hak:</strong> Pendidikan (Pasal 31), Pekerjaan (Pasal 27 ayat 2), Agama (Pasal 29 ayat 2), Kesejahteraan (Pasal 34), Pendapat (Pasal 28E ayat 3).</p>
+  <p><strong>Kewajiban:</strong> Menjunjung hukum (Pasal 27 ayat 1), Bela negara (Pasal 27 ayat 3), Menghormati HAM (Pasal 28J ayat 1).</p>`,
+  skenario:{
+    pendahuluan:"1. Pembukaan, doa.<br>2. Apersepsi.<br>3. Tujuan.",
+    inti:"1. Penjelasan materi (15 menit).<br>2. Permainan kartu hak-kewajiban.<br>3. Presentasi.<br>4. LKPD individu.",
+    penutup:"1. Rangkuman.<br>2. Refleksi."
+  },
+  lkpd:{instruksi:"Pasangkan hak dengan kewajiban dan pasalnya:",
+    rows:["Memperoleh pendidikan","Memeluk agama","Mendapat pekerjaan layak","Hidup aman dan tertib","Menyampaikan pendapat"]},
+  tka:[
+    {stimulus:"Seorang warga menuntut hak hidup aman, namun ia sendiri melanggar rambu lalu lintas.",
+    pertanyaan:"Sikap warga tersebut menunjukkan...",
+    opsi:["Terlalu banyak menuntut hak tanpa uang","Menuntut hak tanpa menjalankan kewajiban menjunjung hukum (Pasal 27 ayat 1)","Tidak memiliki hak","Bela negara tidak berkaitan","Hak dan kewajiban tidak diatur UUD"],
+    kunci:1, pembahasan:"Hak dan kewajiban harus seimbang. Menuntut hak tanpa menjalankan kewajiban menunjukkan ketidakseimbangan."},
+    {stimulus:"Hak atas pendidikan diatur dalam UUD NRI Tahun 1945.",
+    pertanyaan:"Pasal berapa yang mengatur hak atas pendidikan?",
+    opsi:["27","29","31","34","28E"],
+    kunci:2, pembahasan:"Pasal 31 mengatur hak warga negara memperoleh pendidikan."}
+  ]
+},
+{
+  id:16, jp:2, topik:"Menganalisis Kasus Pelanggaran Hak Warga Negara",
+  tujuan:"Peserta didik mampu menganalisis kasus pelanggaran hak warga negara berdasarkan UUD NRI Tahun 1945.",
+  apersepsi:"Guru membacakan berita singkat siswa dilarang ujian secara sepihak.",
+  materi:`<p>Pelanggaran hak terjadi ketika seseorang/kelompok/institusi merampas hak orang lain secara tidak sah.</p><br>
+  <p><strong>Enam Langkah Analisis Kasus:</strong></p>
+  <ol><li>Identifikasi fakta.</li><li>Identifikasi pihak terlibat.</li><li>Tentukan hak yang dilanggar.</li><li>Cari dasar konstitusional.</li><li>Analisis dampak.</li><li>Rumuskan solusi.</li></ol>`,
+  skenario:{
+    pendahuluan:"1. Pembukaan, apersepsi.<br>2. Tujuan.",
+    inti:"1. Paparan 6 langkah (15 menit).<br>2. Kerja kelompok analisis kasus bullying.<br>3. Presentasi.",
+    penutup:"1. Kesimpulan.<br>2. Doa."
+  },
+  lkpd:{instruksi:"Kasus bullying. Analisislah:",
+    rows:["Fakta kejadian","Pihak terlibat","Hak yang dilanggar","Dasar konstitusional","Dampak","Solusi pemulihan dan pencegahan"]},
+  tka:[
+    {stimulus:"Seorang siswa difabel ditolak mengikuti ekstrakurikuler oleh oknum guru tanpa alasan jelas.",
+    pertanyaan:"Langkah pertama analisis kasus tersebut adalah...",
+    opsi:["Langsung menjatuhkan sanksi","Mengidentifikasi fakta kejadian secara objektif","Merumuskan solusi tanpa cek fakta","Menyalahkan siswa difabel","Membiarkan"],
+    kunci:1, pembahasan:"Langkah pertama adalah mengidentifikasi fakta secara objektif."},
+    {stimulus:"Seorang siswa terus-menerus diejek oleh teman sekelasnya.",
+    pertanyaan:"Perundungan melanggar hak...",
+    opsi:["Memilih dalam pemilu","Atas rasa aman dan belajar","Keanggotaan partai politik","Hak cipta","Hak properti"],
+    kunci:1, pembahasan:"Perundungan melanggar hak atas rasa aman dan kenyamanan belajar."}
+  ]
+},
+{
+  id:17, jp:2, topik:"Pengingkaran Kewajiban Warga Negara dan Solusinya",
+  tujuan:"Peserta didik mampu menganalisis kasus pengingkaran kewajiban warga negara dan merumuskan solusinya.",
+  apersepsi:"Guru menunjukkan foto fasilitas umum yang rusak akibat vandal.",
+  materi:`<p>Pengingkaran kewajiban = kelalaian menjalankan tanggung jawab.</p><br>
+  <p><strong>Contoh:</strong> Melanggar lalu lintas, merusak fasilitas umum, membuang sampah sembarangan, menunggak pajak.</p><br>
+  <p><strong>Solusi:</strong> Edukasi, Keteladanan, Pengawasan, Sanksi tegas, Partisipasi masyarakat.</p>`,
+  skenario:{
+    pendahuluan:"1. Salam, doa, apersepsi.<br>2. Tujuan.",
+    inti:"1. Pemaparan konsep (10 menit).<br>2. Diskusi kasus vandalisme.<br>3. LKPD.<br>4. Presentasi.",
+    penutup:"1. Kesimpulan.<br>2. Komitmen individu."
+  },
+  lkpd:{instruksi:"Kasus vandalisme. Analisislah:",
+    rows:["Kewajiban yang diingkari","Akibat bagi warga sekolah","Solusi preventif","Solusi korektif","Peran yang bisa kamu ambil"]},
+  tka:[
+    {stimulus:"Warga menunggak pajak kendaraan, sehingga pendapatan daerah untuk perbaikan jalan terhambat.",
+    pertanyaan:"Solusi paling tepat dan berkelanjutan adalah...",
+    opsi:["Membiarkan","Kombinasi edukasi, keteladanan, pengawasan, dan sanksi tegas proporsional","Menghapus kewajiban pajak","Menyita seluruh aset tanpa proses","Menyerahkan ke swasta"],
+    kunci:1, pembahasan:"Solusi efektif mencakup edukasi, keteladanan, pengawasan, sanksi tegas, dan partisipasi masyarakat."},
+    {stimulus:"Membuang sampah sembarangan ke sungai menyebabkan banjir.",
+    pertanyaan:"Perbuatan tersebut dikategorikan sebagai...",
+    opsi:["Pelanggaran HAM berat","Pengingkaran kewajiban menjaga lingkungan","Pelaksanaan hak pribadi","Fungsi pengaturan UUD","Pelanggaran hak cipta"],
+    kunci:1, pembahasan:"Membuang sampah sembarangan adalah pengingkaran kewajiban menjaga lingkungan."}
+  ]
+},
+{
+  id:18, jp:2, topik:"Peran Lembaga Negara dalam Sistem Ketatanegaraan Indonesia",
+  tujuan:"Peserta didik mampu mengkaji peran lembaga-lembaga negara dalam sistem ketatanegaraan Indonesia.",
+  apersepsi:"Guru bertanya: \"Siapa yang membuat UU? Siapa yang menjalankan? Siapa yang mengawasi?\"",
+  materi:`<p>Sistem ketatanegaraan Indonesia menganut pembagian kekuasaan dan checks and balances.</p><br>
+  <p><strong>Kewenangan 8 Lembaga Negara Utama:</strong></p>
+  <ul><li><strong>MPR:</strong> Mengubah/menetapkan UUD, melantik Presiden.</li><li><strong>Presiden:</strong> Kekuasaan eksekutif.</li><li><strong>DPR:</strong> Membentuk UU, anggaran, pengawasan.</li><li><strong>DPD:</strong> RUU otonomi daerah.</li><li><strong>MA:</strong> Peradilan tertinggi.</li><li><strong>MK:</strong> Menguji UU terhadap UUD, sengketa kewenangan, pembubaran parpol, perselisihan pemilu.</li><li><strong>KY:</strong> Mengusulkan Hakim Agung.</li><li><strong>BPK:</strong> Memeriksa keuangan negara.</li></ul>`,
+  skenario:{
+    pendahuluan:"1. Pembukaan, apersepsi.<br>2. Tujuan.",
+    inti:"1. Pemaparan (15 menit).<br>2. Diskusi kelompok.<br>3. Poster lembaga negara.<br>4. Gallery Walk.<br>5. LKPD.",
+    penutup:"1. Kesimpulan.<br>2. Informasi asesmen.<br>3. Doa."
+  },
+  lkpd:{instruksi:"Lengkapi kewenangan lembaga negara:",
+    rows:["MPR","Presiden","DPR","DPD","MA","MK","KY","BPK"]},
+  tka:[
+    {stimulus:"Terjadi sengketa kewenangan antara dua lembaga negara.",
+    pertanyaan:"Lembaga yang berwenang menyelesaikan sengketa kewenangan antarlembaga negara adalah...",
+    opsi:["Mahkamah Agung","Komisi Yudisial","Mahkamah Konstitusi","BPK","DPD"],
+    kunci:2, pembahasan:"MK memutus sengketa kewenangan lembaga negara yang kewenangannya diberikan oleh UUD."},
+    {stimulus:"Ditemukan indikasi pengelolaan keuangan negara tidak transparan.",
+    pertanyaan:"Pemeriksaan keuangan negara menjadi kewenangan...",
+    opsi:["BPK","MK","KY","MA","DPR"],
+    kunci:0, pembahasan:"BPK memeriksa pengelolaan dan tanggung jawab keuangan negara (Pasal 23E UUD)."}
+  ]
+}
+];
+
+/* ============================================================
+   BANK SOAL EVALUASI AKHIR — 24 PG + 5 ESAI
+   ============================================================ */
+const pgBank = [
+{tp:11,tipe:'PG',stimulus:"UUD NRI Tahun 1945 disahkan oleh PPKI pada tanggal 18 Agustus 1945.",soal:"Fungsi UUD yang mencegah penyelenggara negara bertindak sewenang-wenang disebut fungsi...",opsi:["Konstitutif","Pembatasan kekuasaan","Simbolis","Penjamin"],kunci:1},
+{tp:11,tipe:'PG',soal:"Kedudukan UUD NRI Tahun 1945 dalam sistem hukum Indonesia adalah...",opsi:["Setara dengan UU","Norma hukum tertinggi (supreme law of the land)","Di bawah Peraturan Pemerintah","Hanya simbolis"],kunci:1},
+{tp:11,tipe:'PGK',soal:"Berikut ini yang termasuk fungsi UUD NRI Tahun 1945 adalah... (pilih semua jawaban yang benar)",opsi:["Fungsi konstitutif","Fungsi pembatasan kekuasaan","Fungsi hiburan","Fungsi penjamin hak warga negara"],kunciMulti:[0,1,3]},
+{tp:12,tipe:'PG',soal:"Kepatuhan terhadap aturan yang tumbuh dari kesadaran diri, bukan karena diawasi, disebut...",opsi:["Compliance karena takut","Kesadaran hukum","Formalitas","Keterpaksaan"],kunci:1},
+{tp:12,tipe:'PG',soal:"Berikut ini yang BUKAN prinsip penegakan sanksi yang baik adalah...",opsi:["Edukatif","Proporsional","Adil","Mempermalukan pelanggar"],kunci:3},
+{tp:12,tipe:'BS',soal:"Tentukan Benar (B) atau Salah (S):",pernyataan:["Siswa yang taat aturan hanya saat diawasi guru termasuk contoh kesadaran hukum yang baik.","Sanksi yang mendidik lebih baik daripada sanksi yang mempermalukan siswa.","Menjaga kebersihan kelas adalah salah satu bentuk perilaku taat hukum di sekolah."],kunciBS:[false,true,true]},
+{tp:13,tipe:'PG',soal:"Asas yang menyatakan aturan lebih rendah tidak boleh bertentangan dengan aturan lebih tinggi disebut...",opsi:["Lex specialis derogat legi generali","Lex superior derogat legi inferiori","Lex posterior derogat legi priori","Asas praduga tak bersalah"],kunci:1},
+{tp:13,tipe:'PG',stimulus:"Dalam hierarki peraturan perundang-undangan Indonesia, UUD NRI Tahun 1945 menempati posisi tertinggi.",soal:"Urutan yang benar setelah UUD NRI Tahun 1945 adalah...",opsi:["Peraturan Pemerintah","Peraturan Presiden","Ketetapan MPR","Peraturan Daerah"],kunci:2},
+{tp:13,tipe:'PGK',soal:"Lembaga yang berwenang melakukan judicial review adalah... (pilih semua jawaban yang benar)",opsi:["Mahkamah Konstitusi (menguji UU terhadap UUD)","Mahkamah Agung (menguji peraturan di bawah UU terhadap UU)","DPR","Komisi Yudisial"],kunciMulti:[0,1]},
+{tp:14,tipe:'PG',soal:"Pancasila berkedudukan sebagai...",opsi:["Sumber hukum tertinggi kedua","Sumber dari segala sumber hukum negara","Hanya simbol negara","Hukum daerah semata"],kunci:1},
+{tp:14,tipe:'PG',soal:"Jaminan kebebasan beragama dalam Pasal 29 UUD NRI 1945 merupakan penjabaran sila...",opsi:["Persatuan Indonesia","Ketuhanan Yang Maha Esa","Kerakyatan","Keadilan Sosial"],kunci:1},
+{tp:14,tipe:'BS',soal:"Tentukan Benar (B) atau Salah (S):",pernyataan:["Peraturan perundang-undangan yang bertentangan dengan nilai Pancasila tetap sah selama disahkan DPR.","Sila Kemanusiaan yang Adil dan Beradab menjadi dasar larangan diskriminasi dalam hukum.","Pancasila disebut sebagai staatsfundamentalnorm atau cita hukum bangsa Indonesia."],kunciBS:[false,true,true]},
+{tp:15,tipe:'PG',soal:"Hak atas pendidikan diatur dalam UUD NRI Tahun 1945 Pasal...",opsi:["27","29","31","34"],kunci:2},
+{tp:15,tipe:'PG',soal:"Kewajiban ikut serta dalam upaya pembelaan negara diatur dalam Pasal...",opsi:["27 ayat (1)","27 ayat (2)","27 ayat (3)","28J ayat (1)"],kunci:2},
+{tp:15,tipe:'PGK',soal:"Berikut ini yang merupakan kewajiban warga negara adalah... (pilih semua jawaban yang benar)",opsi:["Menjunjung hukum dan pemerintahan","Bela negara","Menuntut kesejahteraan sosial","Menghormati HAM orang lain"],kunciMulti:[0,1,3]},
+{tp:16,tipe:'PG',soal:"Langkah pertama dalam menganalisis kasus pelanggaran hak adalah...",opsi:["Merumuskan solusi","Mengidentifikasi fakta kejadian","Menjatuhkan sanksi","Mencari pelaku"],kunci:1},
+{tp:16,tipe:'PG',stimulus:"Seorang siswa terus-menerus diejek oleh teman sekelasnya.",soal:"Perundungan di sekolah melanggar hak...",opsi:["Hak memilih dalam pemilu","Hak atas rasa aman dan belajar","Hak keanggotaan partai politik","Hak cipta"],kunci:1},
+{tp:16,tipe:'BS',soal:"Tentukan Benar (B) atau Salah (S):",pernyataan:["Solusi pelanggaran hak boleh diselesaikan dengan kekerasan balik.","Dasar konstitusional harus dicari setelah pihak yang terlibat diidentifikasi.","Dampak bagi korban dan lingkungan perlu dianalisis sebelum merumuskan solusi."],kunciBS:[false,true,true]},
+{tp:17,tipe:'PG',soal:"Membuang sampah sembarangan adalah bentuk...",opsi:["Pelanggaran hak","Pengingkaran kewajiban","Pelanggaran HAM berat","Fungsi UUD"],kunci:1},
+{tp:17,tipe:'PG',soal:"Solusi pengingkaran kewajiban yang menitikberatkan pada contoh perilaku teladan disebut...",opsi:["Sanksi","Pengawasan","Keteladanan","Partisipasi"],kunci:2},
+{tp:17,tipe:'PGK',soal:"Berikut ini termasuk solusi mengatasi pengingkaran kewajiban... (pilih semua jawaban yang benar)",opsi:["Edukasi","Keteladanan","Membiarkan tanpa tindakan","Sanksi tegas yang proporsional"],kunciMulti:[0,1,3]},
+{tp:18,tipe:'PG',soal:"Lembaga yang berwenang menguji undang-undang terhadap UUD NRI Tahun 1945 adalah...",opsi:["Mahkamah Agung","Mahkamah Konstitusi","Komisi Yudisial","Dewan Perwakilan Daerah"],kunci:1},
+{tp:18,tipe:'PG',soal:"Fungsi legislasi, anggaran, dan pengawasan dijalankan oleh...",opsi:["Presiden","MPR","DPR","BPK"],kunci:2},
+{tp:18,tipe:'PG',stimulus:"Ditemukan indikasi pengelolaan keuangan negara tidak transparan.",soal:"Pemeriksaan keuangan negara menjadi kewenangan...",opsi:["BPK","MK","KY","MA"],kunci:0}
+];
+
+const esaiBank = [
+  "Jelaskan mengapa UUD NRI Tahun 1945 disebut hukum dasar tertulis dan bagaimana kedudukannya terhadap peraturan di bawahnya.",
+  "Bagaimana keterkaitan antara ketaatan terhadap tata tertib sekolah dengan konsep ketaatan hukum bernegara? Berikan contoh konkret.",
+  "Jelaskan kedudukan Pancasila sebagai sumber dari segala sumber hukum negara serta kaitannya dengan hierarki peraturan perundang-undangan.",
+  "Analisislah sebuah kasus (nyata atau rekaan) mengenai pelanggaran hak ATAU pengingkaran kewajiban warga negara. Sertakan dasar pasal UUD dan solusinya.",
+  "Jelaskan peran minimal 3 lembaga negara dan bagaimana mekanisme checks and balances bekerja di antara lembaga-lembaga tersebut."
+];
+
+/* ============================================================
+   STATE MANAGEMENT — PROGRES SISWA
+   ============================================================ */
+function getProgress(){
+  return JSON.parse(localStorage.getItem('studentProgress')||'{}');
+}
+function saveProgress(p){
+  localStorage.setItem('studentProgress', JSON.stringify(p));
+}
+function markTKACompleted(meetingId, score){
+  const p = getProgress();
+  if(!p['m'+meetingId] || p['m'+meetingId].score < score){
+    p['m'+meetingId] = {completed:true, score:score, date:new Date().toISOString()};
+  }
+  saveProgress(p);
+  renderProgress();
+  refreshEvalLock();
+}
+function isMeetingUnlocked(meetingId){
+  if(meetingId === 11) return true;
+  const p = getProgress();
+  const prev = meetings.find(m => m.id === meetingId - 1);
+  if(!prev) return true;
+  return p['m'+prev.id] && p['m'+prev.id].completed;
+}
+function areAllMeetingsCompleted(){
+  const p = getProgress();
+  return meetings.every(m => p['m'+m.id] && p['m'+m.id].completed);
+}
+
+/* ============================================================
+   AKSES GURU — Tab tersembunyi
+   ============================================================ */
+function isGuruAccess(){
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get('guru') === '1' || sessionStorage.getItem('guruAccess') === 'true';
+}
+function aktifkanAksesGuru(){
+  const guruTab = document.getElementById('guruTabBtn');
+  if(guruTab) guruTab.classList.remove('hidden');
+}
+
+/* ============================================================
+   NAVIGASI TAB
+   ============================================================ */
+function goPage(name){
+  // Wajib isi identitas dulu (kecuali halaman guru)
+  if(name !== 'guru' && name !== 'beranda'){
+    const id = getIdentitas();
+    if(!id.nama || !id.kelas){
+      alert('Silakan isi nama dan kelas di Beranda terlebih dahulu.');
+      goPage('beranda');
+      return;
+    }
+  }
+  if(name === 'evaluasi' && !areAllMeetingsCompleted()){
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    document.getElementById('page-evaluasi').classList.add('active');
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelector('.tab-btn[data-page="evaluasi"]').classList.add('active');
+    window.scrollTo({top:0,behavior:'smooth'});
+    return;
+  }
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('page-'+name).classList.add('active');
+  const btn=document.querySelector('.tab-btn[data-page="'+name+'"]');
+  if(btn) btn.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(name === 'materi') refreshLockStates();
+  if(name === 'evaluasi') refreshEvalLock();
+  if(name === 'refleksi') tampilkanIdentitas();
+}
+
+/* ============================================================
+   ACCORDION HELPERS
+   ============================================================ */
+function toggleAccordion(header){
+  const item=header.parentElement;
+  if(item.classList.contains('locked')) return;
+  const content=item.querySelector('.accordion-content');
+  if(item.classList.contains('active')){
+    item.classList.remove('active'); content.style.maxHeight=null;
+  }else{
+    item.classList.add('active'); content.style.maxHeight=content.scrollHeight+"px";
+  }
+}
+function openAllAcc(containerId){
+  document.querySelectorAll('#'+containerId+' .accordion:not(.locked)').forEach(item=>{
+    item.classList.add('active');
+    const c=item.querySelector('.accordion-content'); c.style.maxHeight=c.scrollHeight+"px";
+  });
+}
+function closeAllAcc(containerId){
+  document.querySelectorAll('#'+containerId+' .accordion').forEach(item=>{
+    item.classList.remove('active');
+    item.querySelector('.accordion-content').style.maxHeight=null;
+  });
+}
+
+/* ============================================================
+   RENDER: BERANDA
+   ============================================================ */
+function renderBerandaTP(){
+  const ul=document.getElementById('beranda-tp-list');
+  ul.innerHTML = meetings.map(m=>`<li><b>Pertemuan ${m.id} — ${m.topik}:</b> ${m.tujuan}</li>`).join('');
+}
+function renderProgress(){
+  const p = getProgress();
+  const el = document.getElementById('progressDisplay');
+  el.innerHTML = meetings.map(m=>{
+    const done = p['m'+m.id] && p['m'+m.id].completed;
+    const score = done ? p['m'+m.id].score : null;
+    return `<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border-bottom:1px solid var(--border-color);font-size:.9rem;">
+      <span><b>Pertemuan ${m.id}</b> — ${m.topik}</span>
+      <span>${done ? `<span class="badge ok">✓ Selesai (${score}%)</span>` : `<span class="badge locked">🔒 Belum</span>`}</span>
+    </div>`;
+  }).join('');
+  const totalDone = meetings.filter(m=>p['m'+m.id] && p['m'+m.id].completed).length;
+  el.innerHTML += `<p style="margin-top:10px;font-weight:700;color:var(--primary-color)">Total: ${totalDone}/8 pertemuan selesai</p>`;
+}
+
+/* ============================================================
+   RENDER: MATERI + SOAL TKA + LOCK SYSTEM
+   ============================================================ */
+function renderMateri(){
+  const el=document.getElementById('materiAcc');
+  el.innerHTML = meetings.map(m=>{
+    const unlocked = isMeetingUnlocked(m.id);
+    const progress = getProgress();
+    const done = progress['m'+m.id] && progress['m'+m.id].completed;
+    const tkaHTML = m.tka.map((t,ti)=>`
+      <div class="tka-question" id="tka-${m.id}-${ti}">
+        <div class="q-label">Soal TKA ${ti+1}</div>
+        ${t.stimulus?`<div class="stimulus">${t.stimulus}</div>`:''}
+        <p><b>${t.pertanyaan}</b></p>
+        <div id="tka-opts-${m.id}-${ti}">
+          ${t.opsi.map((o,oi)=>`
+            <label class="tka-option" onclick="checkTKA(${m.id},${ti},${oi},this)">
+              <input type="radio" name="tka_${m.id}_${ti}" value="${oi}" style="margin-top:3px">
+              <span>${String.fromCharCode(65+oi)}. ${o}</span>
+            </label>
+          `).join('')}
+        </div>
+        <div id="tka-fb-${m.id}-${ti}"></div>
+      </div>
+    `).join('');
+    return `
+    <div class="accordion ${!unlocked?'locked':''}" id="acc-m${m.id}">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <div>
+          <div class="accordion-title">PERTEMUAN ${m.id} · ${m.jp} JP ${!unlocked?'🔒':''} ${done?'✅':''}</div>
+          <div class="accordion-subtitle">${m.topik}</div>
+        </div>
+        <div class="icon">▼</div>
+      </div>
+      <div class="accordion-content"><div class="content-body">
+        ${!unlocked?`<div class="alert-box">🔒 Terkunci. Selesaikan Pertemuan ${m.id-1} terlebih dahulu.</div>`:''}
+        <div class="section-block"><div class="section-title">🎯 Tujuan Pembelajaran</div><p>${m.tujuan}</p></div>
+        <div class="section-block"><div class="section-title">💡 Apersepsi</div><p>${m.apersepsi}</p></div>
+        <div class="section-block"><div class="section-title">📖 Materi Ajar Lengkap</div>${m.materi}</div>
+        <div class="section-block"><div class="section-title">🔄 Skenario Pembelajaran</div>
+          <div><strong>A. Pendahuluan:</strong><br>${m.skenario.pendahuluan}</div>
+          <div style="margin-top:10px"><strong>B. Inti:</strong><br>${m.skenario.inti}</div>
+          <div style="margin-top:10px"><strong>C. Penutup:</strong><br>${m.skenario.penutup}</div>
+        </div>
+        <div class="section-block">
+          <div class="section-title">🧠 Soal Latihan TKA (2 Soal)</div>
+          <p style="font-size:.85rem;color:var(--text-muted);margin-bottom:10px">Jawab kedua soal dengan benar untuk membuka pertemuan selanjutnya.</p>
+          <div class="tka-box">
+            <span class="tag">Gaya Soal TKA Kemdikdasmen</span>
+            ${tkaHTML}
+          </div>
+          <div id="tka-status-${m.id}" style="margin-top:12px">
+            ${done ? `<span class="badge ok">✅ Selesai (Skor: ${progress['m'+m.id].score}%)</span>` : `<span class="badge pending">⏳ Belum selesai</span>`}
+          </div>
+        </div>
+      </div></div>
+    </div>`;
+  }).join('');
+}
+
+function checkTKA(meetingId, tkaIdx, selected, labelEl){
+  const m = meetings.find(x=>x.id===meetingId);
+  const t = m.tka[tkaIdx];
+  const correct = selected === t.kunci;
+  const container = document.getElementById(`tka-opts-${meetingId}-${tkaIdx}`);
+  container.querySelectorAll('.tka-option').forEach(el=>el.classList.remove('correct','wrong'));
+  if(correct){
+    labelEl.classList.add('correct');
+    document.getElementById(`tka-fb-${meetingId}-${tkaIdx}`).innerHTML = `<div class="tka-feedback ok">✅ Benar! ${t.pembahasan}</div>`;
+  } else {
+    labelEl.classList.add('wrong');
+    document.getElementById(`tka-fb-${meetingId}-${tkaIdx}`).innerHTML = `<div class="tka-feedback bad">❌ Belum tepat. Coba lagi.</div>`;
+    return;
+  }
+  const allCorrect = m.tka.every((tt,ti)=>{
+    const radios = document.getElementsByName(`tka_${meetingId}_${ti}`);
+    for(let r of radios){ if(r.checked && parseInt(r.value) === tt.kunci) return true; }
+    return false;
+  });
+  if(allCorrect){
+    markTKACompleted(meetingId, 100);
+    document.getElementById(`tka-status-${meetingId}`).innerHTML = `<span class="badge ok">✅ Pertemuan ini sudah selesai</span>`;
+    const nextMeeting = meetings.find(x=>x.id === meetingId + 1);
+    if(nextMeeting){
+      const nextAcc = document.getElementById(`acc-m${nextMeeting.id}`);
+      if(nextAcc){
+        nextAcc.classList.remove('locked');
+        nextAcc.querySelector('.accordion-header .accordion-title').innerHTML = `PERTEMUAN ${nextMeeting.id} · ${nextMeeting.jp} JP`;
+      }
+      const lockInfo = document.getElementById('materiLockInfo');
+      if(lockInfo) lockInfo.textContent = `Pertemuan ${nextMeeting.id} telah terbuka! Lanjutkan belajar.`;
+    } else {
+      document.getElementById('materiLockInfo').innerHTML = `🎉 <b>Semua pertemuan selesai!</b> Evaluasi Akhir telah terbuka.`;
+    }
+    refreshLockStates();
+  }
+}
+
+function refreshLockStates(){
+  meetings.forEach(m=>{
+    const acc = document.getElementById(`acc-m${m.id}`);
+    if(!acc) return;
+    const unlocked = isMeetingUnlocked(m.id);
+    const progress = getProgress();
+    const done = progress['m'+m.id] && progress['m'+m.id].completed;
+    const titleEl = acc.querySelector('.accordion-header .accordion-title');
+    if(unlocked){
+      acc.classList.remove('locked');
+      if(titleEl) titleEl.innerHTML = `PERTEMUAN ${m.id} · ${m.jp} JP ${done?'✅':''}`;
+    } else {
+      acc.classList.add('locked');
+      if(titleEl) titleEl.innerHTML = `PERTEMUAN ${m.id} · ${m.jp} JP 🔒`;
+    }
+  });
+  renderProgress();
+  refreshEvalLock();
+}
+
+function refreshEvalLock(){
+  const allDone = areAllMeetingsCompleted();
+  const lockedEl = document.getElementById('evalLocked');
+  const introEl = document.getElementById('evalIntro');
+  if(allDone){
+    if(lockedEl) lockedEl.classList.add('hidden');
+    if(introEl && !document.getElementById('evalMain').classList.contains('hidden')) return;
+    if(introEl) introEl.classList.remove('hidden');
+  } else {
+    if(lockedEl){
+      lockedEl.classList.remove('hidden');
+      const p = getProgress();
+      const doneList = meetings.filter(m=>p['m'+m.id] && p['m'+m.id].completed).map(m=>m.id);
+      document.getElementById('evalLockProgress').innerHTML = `
+        <p><b>Progres:</b> ${doneList.length}/8 pertemuan selesai</p>
+        <ul>${meetings.map(m=>{
+          const d = p['m'+m.id] && p['m'+m.id].completed;
+          return `<li>Pertemuan ${m.id}: ${d?'✅ Selesai':'🔒 Belum'}</li>`;
+        }).join('')}</ul>`;
+    }
+    if(introEl) introEl.classList.add('hidden');
+  }
+}
+
+/* ============================================================
+   RENDER: LKPD
+   ============================================================ */
+function renderLKPD(){
+  const el=document.getElementById('lkpdContainer');
+  const saved = JSON.parse(localStorage.getItem('lkpd_answers')||'{}');
+  el.innerHTML = meetings.map(m=>`
+  <div class="accordion">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      <div><div class="accordion-title">LKPD Pertemuan ${m.id}</div><div class="accordion-subtitle">${m.topik}</div></div>
+      <div class="icon">▼</div>
+    </div>
+    <div class="accordion-content"><div class="content-body">
+      <p style="font-style:italic;margin-bottom:10px">${m.lkpd.instruksi}</p>
+      ${m.lkpd.rows.map((r,i)=>`
+        <label>${i+1}. ${r}</label>
+        <textarea data-m="${m.id}" data-i="${i}" onchange="saveLKPDAnswer(this)">${(saved['m'+m.id]&&saved['m'+m.id][i])?saved['m'+m.id][i]:''}</textarea>
+      `).join('')}
+      <div class="btn-row"><button class="btn accent" onclick="kirimLKPDKeSheet(${m.id})">📤 Kirim LKPD ke Guru</button></div>
+    </div></div>
+  </div>`).join('');
+}
+function saveLKPDAnswer(t){
+  const saved = JSON.parse(localStorage.getItem('lkpd_answers')||'{}');
+  const key='m'+t.dataset.m;
+  if(!saved[key]) saved[key]=[];
+  saved[key][parseInt(t.dataset.i)] = t.value;
+  localStorage.setItem('lkpd_answers', JSON.stringify(saved));
+}
+function kirimLKPDKeSheet(pertemuanId){
+  const sheetUrl = DEFAULT_SHEET_URL;
+  if(!sheetUrl){ alert('URL server belum diatur.'); return; }
+  const id = getIdentitas();
+  if(!id.nama || !id.kelas){ alert('Isi identitas dulu di Beranda.'); return; }
+  const saved = JSON.parse(localStorage.getItem('lkpd_answers')||'{}');
+  const jawaban = saved['m'+pertemuanId] || [];
+  const payload = {
+    type: 'lkpd',
+    nama: id.nama, kelas: id.kelas,
+    pertemuan: pertemuanId,
+    jawaban: jawaban,
+    waktu: new Date().toLocaleString('id-ID')
+  };
+  fetch(sheetUrl,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify(payload)})
+    .then(()=>alert('✅ LKPD Pertemuan '+pertemuanId+' berhasil dikirim ke guru.'))
+    .catch(()=>alert('⚠️ Gagal mengirim. Periksa koneksi.'));
+}
+
+/* ============================================================
+   RENDER: REFLEKSI
+   ============================================================ */
+const refleksiPrompts=["Apa hal baru yang kamu pelajari pada pertemuan ini?","Bagian mana yang masih sulit kamu pahami?","Bagaimana kamu akan menerapkan materi ini dalam kehidupan sehari-hari?"];
+function renderRefleksi(){
+  const el=document.getElementById('refleksiContainer');
+  const saved = JSON.parse(localStorage.getItem('refleksi_data')||'{}');
+  el.innerHTML = meetings.map(m=>`
+  <div class="card">
+    <h3 style="margin-top:0">Refleksi Pertemuan ${m.id} — ${m.topik}</h3>
+    ${refleksiPrompts.map((p,i)=>`
+      <label>${p}</label>
+      <textarea data-m="${m.id}" data-i="${i}" onchange="saveRefleksi(this)">${(saved['m'+m.id]&&saved['m'+m.id][i])?saved['m'+m.id][i]:''}</textarea>
+    `).join('')}
+    <div class="btn-row"><button class="btn accent" onclick="kirimRefleksiKeSheet()">📤 Kirim Refleksi ke Guru</button></div>
+  </div>`).join('');
+}
+function saveRefleksi(t){
+  const saved = JSON.parse(localStorage.getItem('refleksi_data')||'{}');
+  const key='m'+t.dataset.m;
+  if(!saved[key]) saved[key]=[];
+  saved[key][parseInt(t.dataset.i)] = t.value;
+  localStorage.setItem('refleksi_data', JSON.stringify(saved));
+}
+function kirimRefleksiKeSheet(){
+  const sheetUrl = DEFAULT_SHEET_URL;
+  if(!sheetUrl){ alert('URL server belum diatur.'); return; }
+  const id = getIdentitas();
+  if(!id.nama || !id.kelas){ alert('Isi identitas dulu di Beranda.'); return; }
+  const refleksi = JSON.parse(localStorage.getItem('refleksi_data')||'{}');
+  if(Object.keys(refleksi).length === 0){ alert('Belum ada refleksi yang diisi.'); return; }
+  const payload = {
+    type: 'refleksi',
+    nama: id.nama, kelas: id.kelas,
+    waktu: new Date().toLocaleString('id-ID'),
+    data: refleksi
+  };
+  fetch(sheetUrl,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify(payload)})
+    .then(()=>alert('✅ Refleksi berhasil dikirim ke guru.'))
+    .catch(()=>alert('⚠️ Gagal mengirim. Periksa koneksi.'));
+}
+
+/* ============================================================
+   EVALUASI AKHIR
+   ============================================================ */
+let currentEval = {nama:'',kelas:'',pg:{},esai:{}};
+
+function startEvaluasi(){
+  if(!areAllMeetingsCompleted()){
+    alert('Selesaikan semua pertemuan terlebih dahulu.');
+    return;
+  }
+  const id = getIdentitas();
+  if(!id.nama || !id.kelas){ alert('Isi identitas dulu di Beranda.'); return; }
+  currentEval={nama:id.nama,kelas:id.kelas,pg:{},esai:{}};
+  document.getElementById('showNama').textContent=id.nama;
+  document.getElementById('showKelas').textContent=id.kelas;
+  document.getElementById('evalIntro').classList.add('hidden');
+  document.getElementById('evalMain').classList.remove('hidden');
+  document.getElementById('evalResult').classList.add('hidden');
+  renderPG(); renderEsai(); renderEvalNav();
+}
+
+function renderPG(){
+  const el=document.getElementById('pgContainer');
+  el.innerHTML = pgBank.map((q,idx)=>{
+    let body='';
+    if(q.tipe==='BS'){
+      body = q.pernyataan.map((p,pi)=>`
+        <div style="display:flex;justify-content:space-between;align-items:center;background:#f8fafc;border:1px solid var(--border-color);border-radius:8px;padding:8px 12px;margin-bottom:6px;">
+          <span style="font-size:.88rem">${String.fromCharCode(97+pi)}. ${p}</span>
+          <span>
+            <label style="display:inline;margin:0"><input type="radio" name="bs_${idx}_${pi}" value="true" onchange="answerBS(${idx},${pi},true)"> Benar</label>
+            &nbsp;
+            <label style="display:inline;margin:0"><input type="radio" name="bs_${idx}_${pi}" value="false" onchange="answerBS(${idx},${pi},false)"> Salah</label>
+          </span>
+        </div>`).join('');
+    } else if(q.tipe==='PGK'){
+      body = q.opsi.map((o,oi)=>`
+        <label class="opt-label"><input type="checkbox" onchange="answerPGK(${idx},${oi},this.checked)"> ${o}</label>`).join('');
+    } else {
+      body = q.opsi.map((o,oi)=>`
+        <label class="opt-label"><input type="radio" name="pg_${idx}" onchange="answerPG(${idx},${oi})"> ${o}</label>`).join('');
+    }
+    return `<div class="question-block" id="qpg-${idx}">
+      <span class="qnum">Soal ${idx+1}</span><span class="qtype">${q.tipe==='PGK'?'Pilihan Ganda Kompleks':q.tipe==='BS'?'Benar/Salah':'Pilihan Ganda'}</span>
+      ${q.stimulus?`<div class="stimulus"><b>Stimulus:</b> ${q.stimulus}</div>`:''}
+      <p style="margin-bottom:8px"><b>${q.soal}</b></p>
+      ${body}
+    </div>`;
+  }).join('');
+}
+function answerPG(idx,oi){ currentEval.pg[idx]={type:'PG',val:oi}; markNav('navPG',idx); }
+function answerPGK(idx,oi,checked){
+  if(!currentEval.pg[idx]) currentEval.pg[idx]={type:'PGK',val:[]};
+  const arr=currentEval.pg[idx].val;
+  const p=arr.indexOf(oi);
+  if(checked && p===-1) arr.push(oi);
+  if(!checked && p!==-1) arr.splice(p,1);
+  markNav('navPG',idx);
+}
+function answerBS(idx,pi,val){
+  if(!currentEval.pg[idx]) currentEval.pg[idx]={type:'BS',val:{}};
+  currentEval.pg[idx].val[pi]=val;
+  markNav('navPG',idx);
+}
+function markNav(navId,idx){
+  const a=document.querySelector('#'+navId+' a[data-i="'+idx+'"]');
+  if(a) a.classList.add('answered');
+}
+function renderEsai(){
+  const el=document.getElementById('esaiContainer');
+  el.innerHTML = esaiBank.map((q,idx)=>`
+    <div class="question-block" id="qesai-${idx}">
+      <span class="qnum">Esai ${idx+1}</span>
+      <p style="margin-bottom:10px"><b>${q}</b></p>
+      <div class="upload-box">
+        <div>📎 Unggah hasil jawaban (PDF / JPG / PNG)</div>
+        <input type="file" accept="application/pdf,image/*" onchange="answerEsai(${idx},this)">
+        <div id="esaiFileTag-${idx}"></div>
+      </div>
+    </div>`).join('');
+}
+function answerEsai(idx,input){
+  const f=input.files[0];
+  if(!f) return;
+  const reader = new FileReader();
+  reader.onload = function(e){
+    currentEval.esai[idx]={filename:f.name, size:f.size, data:e.target.result};
+    document.getElementById('esaiFileTag-'+idx).innerHTML=`<span class="filename-tag">✔ ${f.name}</span>`;
+    markNav('navEsai',idx);
+  };
+  reader.readAsDataURL(f);
+}
+function renderEvalNav(){
+  document.getElementById('navPG').innerHTML = pgBank.map((q,i)=>`<a href="#qpg-${i}" data-i="${i}">${i+1}</a>`).join('');
+  document.getElementById('navEsai').innerHTML = esaiBank.map((q,i)=>`<a href="#qesai-${i}" data-i="${i}">${i+1}</a>`).join('');
+}
+function scorePG(){
+  let benar=0;
+  pgBank.forEach((q,idx)=>{
+    const ans=currentEval.pg[idx];
+    if(!ans) return;
+    if(q.tipe==='PG'){ if(ans.val===q.kunci) benar++; }
+    else if(q.tipe==='PGK'){
+      const a=[...ans.val].sort(); const k=[...q.kunciMulti].sort();
+      if(JSON.stringify(a)===JSON.stringify(k)) benar++;
+    } else if(q.tipe==='BS'){
+      let allCorrect=true;
+      q.kunciBS.forEach((k,pi)=>{ if(ans.val[pi]!==k) allCorrect=false; });
+      if(allCorrect) benar++;
+    }
+  });
+  return {benar, total:pgBank.length, skor: Math.round((benar/pgBank.length)*100)};
+}
+
+function submitEvaluasi(){
+  const belumPG = pgBank.length - Object.keys(currentEval.pg).length;
+  const belumEsai = esaiBank.length - Object.keys(currentEval.esai).length;
+  if(belumPG>0 || belumEsai>0){
+    if(!confirm(`Masih ada ${belumPG} soal PG dan ${belumEsai} esai yang belum dijawab. Tetap kirim?`)) return;
+  }
+  const pgScore = scorePG();
+  const submission = {
+    id: 'S'+Date.now()+Math.random().toString(36).substring(2,7),
+    nama: currentEval.nama, kelas: currentEval.kelas,
+    waktu: new Date().toLocaleString('id-ID'),
+    pgBenar: pgScore.benar, pgTotal: pgScore.total, pgSkor: pgScore.skor,
+    esaiFiles: esaiBank.map((q,i)=> currentEval.esai[i] ? currentEval.esai[i].filename : '(belum unggah)'),
+    esaiData: esaiBank.map((q,i)=> currentEval.esai[i] ? currentEval.esai[i].data : null),
+    esaiSkor: null, esaiCatatan: esaiBank.map(()=>''), nilaiAkhir: null, statusKoreksi:'Menunggu Koreksi Guru'
+  };
+  const subs = JSON.parse(localStorage.getItem('submissions')||'[]');
+  subs.push(submission);
+  localStorage.setItem('submissions', JSON.stringify(subs));
+  localStorage.setItem('lastSubmissionId', submission.id);
+
+  document.getElementById('evalMain').classList.add('hidden');
+  document.getElementById('evalResult').classList.remove('hidden');
+  document.getElementById('resultSummary').innerHTML = `Terima kasih, <b>${submission.nama}</b> (Kelas ${submission.kelas}).<br>Skor PG sementara: <b>${pgScore.benar}/${pgScore.total} (${pgScore.skor})</b>.<br>Esai berstatus: <span class="badge pending">Menunggu Koreksi Guru</span>.`;
+  document.getElementById('sheetStatus').innerHTML = `<b>Aksi selanjutnya:</b><br>
+    <button class="btn small accent" onclick="cekHasilSiswa()" style="margin-top:8px">🔍 Cek Hasil & Pembahasan Saya</button>`;
+
+  const sheetUrl = DEFAULT_SHEET_URL;
+  if(sheetUrl){
+    const payload = {
+      id: submission.id,
+      nama: submission.nama, kelas: submission.kelas,
+      pgBenar: submission.pgBenar, pgTotal: submission.pgTotal, pgSkor: submission.pgSkor,
+      nilaiAkhir: null,
+      statusKoreksi: submission.statusKoreksi,
+      esaiFiles: JSON.stringify(submission.esaiFiles),
+      esaiData: submission.esaiData,
+      esaiSkor: null,
+      esaiCatatan: "[]",
+      waktu: submission.waktu
+    };
+    document.getElementById('sheetStatus').innerHTML += `<div id="sendStatus" style="margin-top:8px;font-size:.85rem;color:#1e3a8a">📡 Mengirim ke server...</div>`;
+    fetch(sheetUrl,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify(payload)})
+      .then(()=>{
+        const el = document.getElementById('sendStatus');
+        if(el) el.innerHTML = '✅ Data berhasil terkirim ke server guru.';
+      })
+      .catch(()=>{
+        const el = document.getElementById('sendStatus');
+        if(el) el.innerHTML = '⚠️ Gagal mengirim ke server. Hubungi guru.';
+      });
+  }
+}
+
+/* ============================================================
+   SISWA — CEK HASIL & UNDUH SERTIFIKAT
+   ============================================================ */
+function cekHasilSiswa(){
+  const id = getIdentitas();
+  const nama = id.nama;
+  const kelas = id.kelas;
+  if(!nama || !kelas){ alert('Isi identitas dulu di Beranda.'); return; }
+  const subs = JSON.parse(localStorage.getItem('submissions')||'[]');
+  const matches = subs.filter(s => 
+    s.nama.toLowerCase() === nama.toLowerCase() && 
+    s.kelas.toLowerCase() === kelas.toLowerCase()
+  );
+  const out = document.getElementById('cekHasilOutput');
+  if(matches.length === 0){
+    out.innerHTML = `<div class="alert-box">❌ Tidak ditemukan data dengan nama <b>${nama}</b> dan kelas <b>${kelas}</b>. Coba klik <b>🔄 Refresh dari Server</b> terlebih dahulu.</div>`;
+    return;
+  }
+  const s = matches[matches.length - 1];
+  const idx = subs.indexOf(s);
+  const sudahDikoreksi = s.nilaiAkhir !== null;
+  const nilai = s.nilaiAkhir !== null ? s.nilaiAkhir : '-';
+  const statusBadge = s.statusKoreksi.includes('Menunggu') 
+    ? `<span class="badge pending">⏳ Menunggu Koreksi Guru</span>` 
+    : `<span class="badge ok">✅ Sudah Dikoreksi</span>`;
+  out.innerHTML = `
+    <div class="card" style="border-left:5px solid var(--accent-color);margin-top:0">
+      <h3 style="margin-top:0">📋 Hasil Evaluasi Kamu</h3>
+      <table class="tbl">
+        <tr><th>Nama</th><td>${s.nama}</td></tr>
+        <tr><th>Kelas</th><td>${s.kelas}</td></tr>
+        <tr><th>Waktu Pengiriman</th><td>${s.waktu}</td></tr>
+        <tr><th>Skor Pilihan Ganda</th><td>${s.pgBenar}/${s.pgTotal} (${s.pgSkor})</td></tr>
+        <tr><th>Skor Esai</th><td>${s.esaiSkor !== null ? s.esaiSkor : '<i>Menunggu koreksi guru</i>'}</td></tr>
+        <tr><th>Nilai Akhir</th><td><b style="font-size:1.15rem;color:var(--primary-color)">${nilai}</b></td></tr>
+        <tr><th>Status</th><td>${statusBadge}</td></tr>
+      </table>
+      ${!sudahDikoreksi 
+        ? `<div class="info-box">Nilai akhir dan sertifikat akan tersedia setelah guru mengoreksi jawaban esaimu.</div>` 
+        : `<div class="info-box">${s.nilaiAkhir >= 75 
+            ? '🎉 <b>Selamat!</b> Kamu berhak mendapatkan sertifikat.' 
+            : 'Nilai belum mencapai 75. Sertifikat hanya diberikan untuk nilai ≥ 75.'}</div>`}
+      <div class="btn-row">
+        ${sudahDikoreksi 
+          ? `<button class="btn accent" onclick="lihatPembahasanSiswa(${idx})">📖 Lihat Hasil & Pembahasan Lengkap</button>` 
+          : ''}
+        ${(sudahDikoreksi && s.nilaiAkhir >= 75) 
+          ? `<button class="btn warn" onclick="cetakSertifikatSiswa(${idx})">🏆 Unduh / Cetak Sertifikat</button>` 
+          : ''}
+      </div>
+    </div>`;
+}
+
+function lihatPembahasanSiswa(i){
+  const subs = JSON.parse(localStorage.getItem('submissions')||'[]');
+  const s = subs[i];
+  const w = window.open('','_blank');
+  const pgReview = pgBank.map((q,idx)=>{
+    let kunciText='';
+    if(q.tipe==='PG') kunciText = q.opsi[q.kunci];
+    else if(q.tipe==='PGK') kunciText = q.kunciMulti.map(k=>q.opsi[k]).join(', ');
+    else if(q.tipe==='BS') kunciText = q.pernyataan.map((p,pi)=> (q.kunciBS[pi]?'Benar':'Salah')).join(' | ');
+    return `<tr><td>${idx+1}</td><td>${q.soal}</td><td>${kunciText}</td></tr>`;
+  }).join('');
+  w.document.write(`<html><head><title>Hasil & Pembahasan - ${s.nama}</title>
+  <style>body{font-family:Arial,sans-serif;padding:30px;color:#1e293b}h1{color:#1e3a8a}table{width:100%;border-collapse:collapse;margin-top:10px}
+  th,td{border:1px solid #cbd5e1;padding:8px;text-align:left;font-size:.85rem}th{background:#f1f5f9}
+  .box{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:14px;margin:14px 0}</style></head><body>
+  <h1>Hasil & Pembahasan Evaluasi Akhir</h1>
+  <p style="color:#64748b">Pendidikan Pancasila — Bab UUD NRI Tahun 1945</p>
+  <p><b>Nama:</b> ${s.nama} &nbsp; | &nbsp; <b>Kelas:</b> ${s.kelas} &nbsp; | &nbsp; <b>Waktu:</b> ${s.waktu}</p>
+  <div class="box">
+    <p><b>Skor Pilihan Ganda:</b> ${s.pgBenar}/${s.pgTotal} (${s.pgSkor})</p>
+    <p><b>Skor Esai:</b> ${s.esaiSkor}</p>
+    <p><b>Nilai Akhir:</b> <span style="font-size:1.3rem;font-weight:700;color:#1e3a8a">${s.nilaiAkhir}</span></p>
+    <p><b>Catatan Guru:</b> ${s.esaiCatatan.join(' ')||'-'}</p>
+  </div>
+  <h3>Pembahasan Soal Pilihan Ganda</h3>
+  <table><thead><tr><th>No</th><th>Soal</th><th>Kunci Jawaban</th></tr></thead><tbody>${pgReview}</tbody></table>
+  <p style="margin-top:20px"><button onclick="window.print()" style="padding:10px 20px;font-size:1rem;cursor:pointer">🖨️ Cetak / Simpan PDF</button></p>
+  <script>window.print();<\/script>
+  </body></html>`);
+  w.document.close();
+}
+
+function cetakSertifikatSiswa(i){
+  const subs = JSON.parse(localStorage.getItem('submissions')||'[]');
+  const s = subs[i];
+  const guru = JSON.parse(localStorage.getItem('guruProfile')||'{}');
+  const w = window.open('','_blank');
+  w.document.write(`<html><head><title>Sertifikat - ${s.nama}</title>
+  <style>body{font-family:Georgia,serif;padding:40px;text-align:center;color:#1e293b}
+  .cert{border:10px double #1e3a8a;border-radius:14px;padding:50px 30px;}
+  h1{color:#1e3a8a;font-size:2rem}.nama{font-size:2rem;font-weight:700;color:#0d9488;margin:20px 0;border-bottom:2px solid #cbd5e1;display:inline-block;padding-bottom:8px}
+  .ttd{margin-top:50px;display:flex;justify-content:space-around}</style></head><body>
+  <div class="cert">
+    <h1>SERTIFIKAT PENGHARGAAN</h1>
+    <p>Diberikan kepada</p>
+    <div class="nama">${s.nama}</div>
+    <p>Kelas ${s.kelas}</p>
+    <p style="max-width:500px;margin:16px auto">Atas keberhasilannya menyelesaikan Evaluasi Akhir Modul Pendidikan Pancasila<br>Bab "UUD NRI Tahun 1945" dengan Nilai Akhir <b>${s.nilaiAkhir}</b></p>
+    <div class="ttd">
+      <div>____________________<br>${guru.kepsek||'Kepala Sekolah'}<br><small>Kepala Sekolah</small></div>
+      <div>____________________<br>${guru.nama||'Guru Mata Pelajaran'}<br><small>Guru ${guru.mapel||'Pendidikan Pancasila'}</small></div>
+    </div>
+  </div>
+  <p style="margin-top:24px"><button onclick="window.print()" style="padding:10px 20px;font-size:1rem;cursor:pointer">🖨️ Cetak / Simpan PDF</button></p>
+  <script>window.print();<\/script>
+  </body></html>`);
+  w.document.close();
+}
+
+/* ============================================================
+   REFRESH DARI SERVER
+   ============================================================ */
+function refreshDariServer(){
+  const url = DEFAULT_SHEET_URL;
+  if(!url){ alert('URL server belum diatur oleh guru.'); return; }
+  alert('Memuat data dari server, mohon tunggu...');
+  fetch(url)
+    .then(r=>r.json())
+    .then(data=>{
+      if(!data || data.length < 2){ alert('Belum ada data di server.'); return; }
+      const subs = JSON.parse(localStorage.getItem('submissions')||'[]');
+      const existingIds = new Set(subs.map(s=>s.id));
+      let added = 0, updated = 0;
+      for(let i=1; i<data.length; i++){
+        const row = data[i];
+        const rec = {
+          id: row[0], waktu: row[1], nama: row[2], kelas: row[3],
+          pgBenar: parseInt(row[4])||0, pgTotal: parseInt(row[5])||0, pgSkor: parseInt(row[6])||0,
+          nilaiAkhir: (row[7]==='-'||row[7]===''||row[7]===null)?null:parseInt(row[7]),
+          statusKoreksi: row[8]||'Menunggu Koreksi Guru',
+          esaiFiles: row[9]?tryParse(row[9]):[],
+          esaiData: row[10]?tryParse(row[10]):null,
+          esaiSkor: (row[11]===''||row[11]===null)?null:parseInt(row[11]),
+          esaiCatatan: row[12]?tryParse(row[12]):[]
+        };
+        if(!existingIds.has(rec.id)){
+          subs.push(rec); added++;
+        } else {
+          const idx = subs.findIndex(s=>s.id===rec.id);
+          subs[idx] = Object.assign(subs[idx], rec); updated++;
+        }
+      }
+      localStorage.setItem('submissions', JSON.stringify(subs));
+      alert(`Sinkronisasi selesai.\n${added} data baru, ${updated} data diperbarui.`);
+      if(guruLoggedIn) renderSubmissionList();
+      // Cek hasil siswa jika ada identitas
+      const id = getIdentitas();
+      if(id.nama && id.kelas) cekHasilSiswa();
+    })
+    .catch(err=>{ 
+      console.error(err);
+      alert('Gagal sinkronisasi. Pastikan Web App di-deploy dengan akses "Anyone".'); 
+    });
+}
+function tryParse(str){
+  try { return JSON.parse(str); } catch(e){ return str; }
+}
+
+/* ============================================================
+   HASIL EVALUASI GURU — LOGIN
+   ============================================================ */
+let guruLoggedIn = false;
+
+function loginGuru(){
+  const pw = document.getElementById('guruPassword').value;
+  if(pw === GURU_PASSWORD){
+    guruLoggedIn = true;
+    document.getElementById('guruLogin').classList.add('hidden');
+    document.getElementById('guruContent').classList.remove('hidden');
+    renderSubmissionList();
+    if(DEFAULT_SHEET_URL) setTimeout(syncFromSheet, 500);
+  } else {
+    alert('Password salah!');
+  }
+}
+function logoutGuru(){
+  guruLoggedIn = false;
+  document.getElementById('guruLogin').classList.remove('hidden');
+  document.getElementById('guruContent').classList.add('hidden');
+  document.getElementById('guruPassword').value = '';
+  document.getElementById('koreksiPanel').classList.add('hidden');
+}
+
+function syncFromSheet(){
+  const url = DEFAULT_SHEET_URL;
+  if(!url){ 
+    document.getElementById('syncStatus').innerHTML = '⚠️ URL server belum diatur. Isi konstanta <code>DEFAULT_SHEET_URL</code>.';
+    return; 
+  }
+  document.getElementById('syncStatus').innerHTML = '📡 Memuat data dari server, mohon tunggu...';
+  fetch(url)
+    .then(r=>r.json())
+    .then(data=>{
+      if(!data || data.length < 2){
+        document.getElementById('syncStatus').innerHTML = 'ℹ️ Belum ada data di server.';
+        return;
+      }
+      const subs = JSON.parse(localStorage.getItem('submissions')||'[]');
+      const existingIds = new Set(subs.map(s=>s.id));
+      let added = 0, updated = 0;
+      for(let i=1; i<data.length; i++){
+        const row = data[i];
+        const rec = {
+          id: row[0], waktu: row[1], nama: row[2], kelas: row[3],
+          pgBenar: parseInt(row[4])||0, pgTotal: parseInt(row[5])||0, pgSkor: parseInt(row[6])||0,
+          nilaiAkhir: (row[7]==='-'||row[7]===''||row[7]===null)?null:parseInt(row[7]),
+          statusKoreksi: row[8]||'Menunggu Koreksi Guru',
+          esaiFiles: row[9]?tryParse(row[9]):[],
+          esaiData: row[10]?tryParse(row[10]):null,
+          esaiSkor: (row[11]===''||row[11]===null)?null:parseInt(row[11]),
+          esaiCatatan: row[12]?tryParse(row[12]):[]
+        };
+        if(!existingIds.has(rec.id)){
+          subs.push(rec); added++;
+        } else {
+          const idx = subs.findIndex(s=>s.id===rec.id);
+          subs[idx] = Object.assign(subs[idx], rec); updated++;
+        }
+      }
+      localStorage.setItem('submissions', JSON.stringify(subs));
+      document.getElementById('syncStatus').innerHTML = `✅ Sinkronisasi selesai — <b>${added}</b> data baru, <b>${updated}</b> diperbarui. Total: <b>${subs.length}</b> data.`;
+      renderSubmissionList();
+    })
+    .catch(err=>{
+      console.error(err);
+      document.getElementById('syncStatus').innerHTML = '❌ Gagal sinkronisasi. Pastikan Web App di-deploy dengan akses "Anyone".';
+    });
+}
+
+function clearSubmissions(){
+  if(confirm('Hapus semua data jawaban siswa di perangkat ini? Data di server tetap aman.')){
+    localStorage.removeItem('submissions');
+    renderSubmissionList();
+    document.getElementById('koreksiPanel').classList.add('hidden');
+  }
+}
+
+/* ============================================================
+   DAFTAR SUBMISSION & KOREKSI GURU
+   ============================================================ */
+function renderSubmissionList(){
+  const subs = JSON.parse(localStorage.getItem('submissions')||'[]');
+  const el = document.getElementById('submissionList');
+  if(subs.length===0){ 
+    el.innerHTML='<p style="color:var(--text-muted)">Belum ada jawaban siswa. Klik <b>Sinkronkan dari Server</b> untuk memuat data online.</p>'; 
+    return; 
+  }
+  const sorted = subs.map((s,i)=>({s,i})).sort((a,b)=>{
+    const aPending = a.s.statusKoreksi.includes('Menunggu') ? 0 : 1;
+    const bPending = b.s.statusKoreksi.includes('Menunggu') ? 0 : 1;
+    return aPending - bPending;
+  });
+  el.innerHTML = `<table class="tbl"><thead><tr><th>Nama</th><th>Kelas</th><th>PG</th><th>Esai</th><th>Nilai Akhir</th><th>Status</th><th>Aksi</th></tr></thead><tbody>
+  ${sorted.map(({s,i})=>`<tr>
+    <td>${s.nama}</td><td>${s.kelas}</td>
+    <td>${s.pgBenar}/${s.pgTotal} (${s.pgSkor})</td>
+    <td>${s.esaiSkor !== null && s.esaiSkor !== undefined ? s.esaiSkor : '-'}</td>
+    <td>${s.nilaiAkhir!==null?s.nilaiAkhir:'-'}</td>
+    <td><span class="badge ${s.statusKoreksi.includes('Menunggu')?'pending':(s.nilaiAkhir>=75?'ok':'bad')}">${s.statusKoreksi}</span></td>
+    <td>
+      <button class="btn small" onclick="openKoreksi(${i})">Koreksi</button>
+      ${s.nilaiAkhir!==null?`<button class="btn small accent" onclick="printHasil(${i})" style="margin-left:4px">🖨️ Hasil</button>`:''}
+      ${(s.nilaiAkhir!==null && s.nilaiAkhir>=75)?`<button class="btn small warn" onclick="printSertifikat(${i})" style="margin-left:4px">🏆 Sertifikat</button>`:''}
+    </td>
+  </tr>`).join('')}
+  </tbody></table>
+  <p style="margin-top:10px;font-size:.85rem;color:var(--text-muted)">Total: <b>${subs.length}</b> jawaban siswa. 
+  ${subs.filter(s=>s.statusKoreksi.includes('Menunggu')).length} menunggu koreksi.</p>`;
+}
+
+function openKoreksi(i){
+  const subs = JSON.parse(localStorage.getItem('submissions')||'[]');
+  const s = subs[i];
+  const panel = document.getElementById('koreksiPanel');
+  panel.classList.remove('hidden');
+  const esaiPreview = s.esaiData && Array.isArray(s.esaiData) ? s.esaiData.map((d,idx)=>{
+    if(!d) return `<li>Esai ${idx+1}: <span style="color:var(--text-muted)">(tidak diunggah)</span></li>`;
+    const isImage = typeof d === 'string' && d.startsWith('data:image');
+    return `<li style="margin-bottom:10px">Esai ${idx+1}: <b>${s.esaiFiles[idx]||''}</b><br>${isImage ? `<img src="${d}" style="max-width:100%;max-height:300px;border:1px solid var(--border-color);border-radius:6px;margin-top:6px">` : `<a href="${d}" download="${s.esaiFiles[idx]||'esai'}" style="color:var(--primary-light)">⬇️ Unduh Berkas</a>`}</li>`;
+  }).join('') : s.esaiFiles.map((f,idx)=>`<li>Esai ${idx+1}: ${f}</li>`).join('');
+  panel.innerHTML = `
+  <div class="card">
+    <h2>🖊️ Koreksi Jawaban — ${s.nama} (${s.kelas})</h2>
+    <p>Waktu: ${s.waktu}</p>
+    <p>Skor Pilihan Ganda otomatis: <b>${s.pgBenar}/${s.pgTotal} → ${s.pgSkor}</b></p>
+    <h3>Berkas Esai yang Diunggah</h3>
+    <ul>${esaiPreview}</ul>
+    <label>Skor Esai (0-100, rata-rata dari 5 esai)</label>
+    <input type="number" id="esaiSkorInput" min="0" max="100" value="${s.esaiSkor!==null && s.esaiSkor!==undefined ? s.esaiSkor : ''}">
+    <label>Catatan / Pembahasan Guru (opsional)</label>
+    <textarea id="esaiCatatanInput">${s.esaiCatatan && s.esaiCatatan.filter(Boolean).join(' ')||''}</textarea>
+    <div class="btn-row">
+      <button class="btn accent" onclick="saveKoreksi(${i})">💾 Simpan Koreksi & Hitung Nilai Akhir</button>
+      ${s.nilaiAkhir!==null?`<button class="btn" onclick="printHasil(${i})">🖨️ Cetak Hasil & Pembahasan</button>`:''}
+      ${(s.nilaiAkhir!==null && s.nilaiAkhir>=75)?`<button class="btn warn" onclick="printSertifikat(${i})">🏆 Cetak Sertifikat</button>`:''}
+      <button class="btn secondary" onclick="document.getElementById('koreksiPanel').classList.add('hidden')">Tutup</button>
+    </div>
+  </div>`;
+}
+
+function saveKoreksi(i){
+  const subs = JSON.parse(localStorage.getItem('submissions')||'[]');
+  const s = subs[i];
+  const esaiSkor = parseFloat(document.getElementById('esaiSkorInput').value);
+  if(isNaN(esaiSkor)||esaiSkor<0||esaiSkor>100){ alert('Masukkan skor esai antara 0-100.'); return; }
+  const catatan = document.getElementById('esaiCatatanInput').value;
+  s.esaiSkor = esaiSkor;
+  s.esaiCatatan = [catatan];
+  s.nilaiAkhir = Math.round((s.pgSkor*0.5) + (esaiSkor*0.5));
+  s.statusKoreksi = 'Sudah Dikoreksi';
+  subs[i]=s;
+  localStorage.setItem('submissions', JSON.stringify(subs));
+  const sheetUrl = DEFAULT_SHEET_URL;
+  if(sheetUrl){
+    fetch(sheetUrl,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify({
+      id:s.id, nama:s.nama, kelas:s.kelas, pgBenar:s.pgBenar, pgTotal:s.pgTotal,
+      pgSkor:s.pgSkor, nilaiAkhir:s.nilaiAkhir, statusKoreksi:s.statusKoreksi,
+      esaiFiles:JSON.stringify(s.esaiFiles), esaiData: s.esaiData, esaiSkor:s.esaiSkor, 
+      esaiCatatan: JSON.stringify(s.esaiCatatan), waktu:s.waktu
+    })}).catch(()=>{});
+  }
+  alert('Koreksi disimpan. Nilai akhir: '+s.nilaiAkhir);
+  renderSubmissionList();
+  openKoreksi(i);
+}
+
+function printHasil(i){
+  const subs = JSON.parse(localStorage.getItem('submissions')||'[]');
+  const s = subs[i];
+  const w = window.open('','_blank');
+  const pgReview = pgBank.map((q,idx)=>{
+    let kunciText='';
+    if(q.tipe==='PG') kunciText = q.opsi[q.kunci];
+    else if(q.tipe==='PGK') kunciText = q.kunciMulti.map(k=>q.opsi[k]).join(', ');
+    else if(q.tipe==='BS') kunciText = q.pernyataan.map((p,pi)=> (q.kunciBS[pi]?'Benar':'Salah')).join(' | ');
+    return `<tr><td>${idx+1}</td><td>${q.soal}</td><td>${kunciText}</td></tr>`;
+  }).join('');
+  w.document.write(`<html><head><title>Hasil & Pembahasan - ${s.nama}</title>
+  <style>body{font-family:Arial,sans-serif;padding:30px;color:#1e293b}h1{color:#1e3a8a}table{width:100%;border-collapse:collapse;margin-top:10px}
+  th,td{border:1px solid #cbd5e1;padding:8px;text-align:left;font-size:.85rem}th{background:#f1f5f9}
+  .box{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:14px;margin:14px 0}</style></head><body>
+  <h1>Hasil Evaluasi Akhir — Pendidikan Pancasila (UUD NRI 1945)</h1>
+  <p><b>Nama:</b> ${s.nama} &nbsp; | &nbsp; <b>Kelas:</b> ${s.kelas} &nbsp; | &nbsp; <b>Waktu:</b> ${s.waktu}</p>
+  <div class="box">
+    <p><b>Skor Pilihan Ganda:</b> ${s.pgBenar}/${s.pgTotal} (${s.pgSkor})</p>
+    <p><b>Skor Esai:</b> ${s.esaiSkor}</p>
+    <p><b>Nilai Akhir:</b> <span style="font-size:1.3rem;font-weight:700;color:#1e3a8a">${s.nilaiAkhir}</span></p>
+    <p><b>Catatan Guru:</b> ${s.esaiCatatan && s.esaiCatatan.filter(Boolean).join(' ')||'-'}</p>
+  </div>
+  <h3>Pembahasan Soal Pilihan Ganda</h3>
+  <table><thead><tr><th>No</th><th>Soal</th><th>Kunci Jawaban</th></tr></thead><tbody>${pgReview}</tbody></table>
+  <script>window.print();<\/script>
+  </body></html>`);
+  w.document.close();
+}
+
+function printSertifikat(i){
+  const subs = JSON.parse(localStorage.getItem('submissions')||'[]');
+  const s = subs[i];
+  const guru = JSON.parse(localStorage.getItem('guruProfile')||'{}');
+  const w = window.open('','_blank');
+  w.document.write(`<html><head><title>Sertifikat - ${s.nama}</title>
+  <style>body{font-family:Georgia,serif;padding:40px;text-align:center;color:#1e293b}
+  .cert{border:10px double #1e3a8a;border-radius:14px;padding:50px 30px;}
+  h1{color:#1e3a8a;font-size:2rem}.nama{font-size:2rem;font-weight:700;color:#0d9488;margin:20px 0;border-bottom:2px solid #cbd5e1;display:inline-block;padding-bottom:8px}
+  .ttd{margin-top:50px;display:flex;justify-content:space-around}</style></head><body>
+  <div class="cert">
+    <h1>SERTIFIKAT PENGHARGAAN</h1>
+    <p>Diberikan kepada</p>
+    <div class="nama">${s.nama}</div>
+    <p>Kelas ${s.kelas}</p>
+    <p style="max-width:500px;margin:16px auto">Atas keberhasilannya menyelesaikan Evaluasi Akhir Modul Pendidikan Pancasila<br>Bab "UUD NRI Tahun 1945" dengan Nilai Akhir <b>${s.nilaiAkhir}</b></p>
+    <div class="ttd">
+      <div>____________________<br>${guru.kepsek||'Kepala Sekolah'}<br><small>Kepala Sekolah</small></div>
+      <div>____________________<br>${guru.nama||'Guru Mata Pelajaran'}<br><small>Guru ${guru.mapel||'Pendidikan Pancasila'}</small></div>
+    </div>
+  </div>
+  <script>window.print();<\/script>
+  </body></html>`);
+  w.document.close();
+}
+
+/* ============================================================
+   INIT
+   ============================================================ */
+window.addEventListener('DOMContentLoaded', ()=>{
+  renderBerandaTP();
+  renderProgress();
+  renderMateri();
+  renderLKPD();
+  renderRefleksi();
+  renderEvalNav();
+  renderPG();
+  renderEsai();
+  renderSubmissionList();
+  refreshLockStates();
+  refreshEvalLock();
+  tampilkanIdentitas();
+  // Cek akses guru
+  if(isGuruAccess()) aktifkanAksesGuru();
+  // Isi kode Apps Script ke helper (jika ada elemennya)
+  const gsEl = document.getElementById('gsCode');
+  if(gsEl) gsEl.value = gsCodeText;
+  // Shortcut Ctrl+Shift+G untuk akses guru
+  document.addEventListener('keydown', function(e){
+    if(e.ctrlKey && e.shiftKey && e.key === 'G'){
+      e.preventDefault();
+      sessionStorage.setItem('guruAccess', 'true');
+      aktifkanAksesGuru();
+      goPage('guru');
+    }
+  });
+});
+</script>
+</body>
+</html>
